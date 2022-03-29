@@ -47,6 +47,21 @@ input:focus {
   border: 1px solid lightgrey;
 }
 
+input .error{
+  border: 1px solid var(--error);
+}
+
+small{
+  color: var(--error);
+  font-size: 12px;
+  display: none;
+}
+
+small.show{
+  display: block;
+}
+
+
 label {
   width: 100%;
   font-weight: 300;

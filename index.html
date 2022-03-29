@@ -11,8 +11,7 @@
   <link rel="stylesheet" href="styles/acesso.css">
 
   <!-- ---------------------- lógica aplicada no login ----------------------- -->
-  <script src="/scripts/utils.js"></script>
-  <script src="/scripts/index.js"></script>
+   <!--<script src="/scripts/utils.js"></script>-->
 
 </head>
 
@@ -31,20 +30,24 @@
 
       <label>
         Email:
-        <input id="inputEmail" type="text">
+        <input id="inputEmail" type="email" required>
+        <small class="msgErroEmail">Campo obrigatório, por favor preeencha os dados</small>
       </label>
       <label>
         Senha:
-        <input id="inputPassword" type="password">
+        <input id="inputPassword" type="password" minlength="6" required>
+        <small class="msgErroSenha">A senha precisa ter no mínimo 6 dígitos.</small>
       </label>
 
-      <button type="submit">Acessar</button>
+      <button type="submit" id="btnAcessar" disabled>Acessar</button>
 
     </form>
     <div class="ingressar">
       <a href="signup.html">Não possui conta? Crie agora mesmo</a>
     </div>
   </div>
+
+  <script src="./scripts/index.js"></script>
 
 </body>
 
