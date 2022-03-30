@@ -4,14 +4,13 @@ const inputBtnAcessarRef = document.querySelector('#btnAcessar');
 const inputMsgErroEmailRef = document.querySelector('.msgErroEmail');
 const inputMsgErroSenhaRef = document.querySelector('.msgErroSenha');
 
-let erro = false;
 
 const validaEmail = () => {
   if (inputEmailRef.checkValidity()) {
     inputMsgErroEmailRef.classList.remove('show')
   } else {
     inputMsgErroEmailRef.classList.add('show')
-    erro = true
+
   }
 }
 
@@ -20,18 +19,17 @@ const validaSenha = () => {
     inputMsgErroSenhaRef.classList.remove('show')
   } else {
     inputMsgErroSenhaRef.classList.add('show')
-    erro = true
+
   }
 }
 
 const habilitaBtnAcessar = () =>{
-
+  inputBtnAcessarRef.removeAttribute('disabled')
 }
-
 
 inputEmailRef.addEventListener('keyup', validaEmail);
 inputSenhaRef.addEventListener('keyup', validaSenha);
+habilitaBtnAcessar()
 inputBtnAcessarRef.addEventListener('click', (e) => {
   e.preventDefault()
-  habilitaBtnAcessar()
 });

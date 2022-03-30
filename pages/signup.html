@@ -8,18 +8,17 @@
   <title>To-Do App</title>
 
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
-  <link rel="stylesheet" href="styles/acesso.css">
+  <link rel="stylesheet" href="../styles/acesso.css">
 
   <!-- ---------------------- lógica aplicada no registro -------------------- -->
-  <script src="/scripts/utils.js"></script>
-  <script src="/scripts/signup.js"></script>
+    <!--<script src="/scripts/utils.js"></script> -->
 
 </head>
 
 <body>
 
   <div class="left">
-    <img src="./assets/pessoa-signup.png" alt="">
+    <img src="../assets/pessoa-signup.png" alt="">
   </div>
   <div class="right">
     <form>
@@ -28,33 +27,40 @@
       </div>
 
       <label>
-        Nome:
-        <input type="text">
+        Nome completo:
+        <input type="text" id="inputNome" pattern="^(\w{2,})+(\s(\w{2,})+)+$" required>
+        <small id="msgErroNome">O campo deve conter nome e sobrenome.</small>
       </label>
       <label>
         Apelido:
-        <input type="text">
+        <input type="text" id="inputApelido" minlength="2" required>
+        <small id="msgErroApelido">Campo obrigatório, deve conter no mínimo 2 letras.</small>
       </label>
       <label>
         Email:
-        <input type="text">
+        <input type="email" id="inputEmail" required>
+        <small id="msgErroEmail">O campo email é obrigatório.</small>
       </label>
       <label>
         Senha:
-        <input type="password">
+        <input type="password" id="inputSenha" minlength="6" required>
+        <small id="msgErroSenha">O campo senha é obrigatório e precisa ter no mínimo 6 dígitos.</small>
       </label>
       <label>
         Repetir senha:
-        <input type="password">
+        <input type="password" id="inputSenhaConfirm" required>
+        <small id="msgErroConfirmSenha">As senhas estão diferentes.</small>
       </label>
 
-      <button>Criar conta</button>
+      <button id="btnCriarConta" disabled>Criar conta</button>
 
     </form>
     <div class="ingressar">
       <a href="index.html">Já possui conta? Acesse aqui</a>
     </div>
   </div>
+
+  <script src="../scripts/signup.js"></script>
 
 </body>
 
