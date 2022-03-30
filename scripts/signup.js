@@ -79,14 +79,12 @@ const validaFormCriarConta = () => {
 //Habilita o botão de criar conta
 const habilitaBtnCriarConta = () => {
   inputBtnCriarContaRef.disabled = !validaFormCriarConta();
-
 }
 
 //Acessar a página do login caso já tenha conta
 const acessarPagLogin = () => {
   window.location.assign("../index.html")
 }
-
 
 //Chama as funções
 inputNomeRef.addEventListener('keyup', habilitaBtnCriarConta);
