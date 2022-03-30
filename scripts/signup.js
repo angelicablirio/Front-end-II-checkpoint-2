@@ -10,6 +10,7 @@ const inputMsgErroSenhaRef = document.querySelector('#msgErroSenha');
 const inputMsgErroConfirmSenhaRef = document.querySelector('#msgErroConfirmSenha')
 const inputMsgErroApelidoRef = document.querySelector('#msgErroApelido');
 const inputMsgErroEmailRef = document.querySelector('#msgErroEmail');
+const linkLoginRef = document.querySelector('a')
 
 //Valida nome
 const validaNome = () => {
@@ -56,14 +57,17 @@ const confirmaSenha = () => {
   }
 }
 
+//Acessar a página do login caso já tenha conta
+const acessarPagLogin = () => {
+  window.location.assign("../index.html")
+}
+
+//Habilita o botão de criar conta
 const habilitaBtnCriarConta = () => {
   inputBtnCriarContaRef.removeAttribute('disabled');
 
 }
 
-inputBtnCriarContaRef.addEventListener('click', (e) => {
-  e.preventDefault();
-});
 
 //Chama as funções
 inputNomeRef.addEventListener('keyup', validaNome);
@@ -71,4 +75,8 @@ inputApelidoRef.addEventListener('keyup', validaApelido);
 inputEmailRef.addEventListener('keyup', validaEmail);
 inputSenhaRef.addEventListener('keyup', validaSenha);
 inputSenhaConfirmRef.addEventListener('keyup', confirmaSenha);
-//habilitaBtnCriarConta();
+linkLoginRef.addEventListener('click', acessarPagLogin)
+inputBtnCriarContaRef.addEventListener('click', (e) => {
+  e.preventDefault();
+});
+

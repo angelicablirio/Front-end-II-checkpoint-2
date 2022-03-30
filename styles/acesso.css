@@ -72,11 +72,17 @@ label {
 
 button {
   padding: .5em 3em;
-  background-color: var(--primary);
+  background-color: var(--secondary);
   color: white;
   margin-top: 2em;
   font-weight: 400;
   font-size: 1em;
+}
+
+button:disabled,
+button[disabled] {
+  background-color: var(--primary);
+  cursor:none;
 }
 
 .form-header {
