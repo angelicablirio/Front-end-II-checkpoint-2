@@ -9,9 +9,10 @@ const linkCriarContaRef = document.querySelector('a')
 const validaEmail = () => {
   if (inputEmailRef.checkValidity()) {
     inputMsgErroEmailRef.classList.remove('show')
+    return true;
   } else {
     inputMsgErroEmailRef.classList.add('show')
-
+    return false
   }
 }
 
@@ -19,24 +20,31 @@ const validaEmail = () => {
 const validaSenha = () => {
   if (inputSenhaRef.checkValidity()) {
     inputMsgErroSenhaRef.classList.remove('show')
+    return true;
   } else {
     inputMsgErroSenhaRef.classList.add('show')
-
+    return false
   }
+}
+
+//Valida todos os campos do formulário
+const validaForm = () => {
+  return validaEmail() &&
+  validaSenha()
 }
 
 //Habilita o botão acessar
 const habilitaBtnAcessar = () =>{
-  inputBtnAcessarRef.removeAttribute('disabled')
+  inputBtnAcessarRef.disabled = !validaForm();
 }
 
 //Acessar a página do para criar conta caso não tenha
 const acessarPagCriarConta = () => {
-  window.location.assign("./pages/signup.html")
+  window.location.assign("./pages/signup.html");
 }
 
-inputEmailRef.addEventListener('keyup', validaEmail);
-inputSenhaRef.addEventListener('keyup', validaSenha);
+inputEmailRef.addEventListener('keyup', habilitaBtnAcessar);
+inputSenhaRef.addEventListener('keyup', habilitaBtnAcessar);
 inputBtnAcessarRef.addEventListener('click', (e) => {
   e.preventDefault()
 });

@@ -79,10 +79,9 @@ button {
   font-size: 1em;
 }
 
-button:disabled,
-button[disabled] {
-  background-color: var(--primary);
-  cursor:none;
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
 }
 
 .form-header {
