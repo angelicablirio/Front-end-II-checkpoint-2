@@ -34,20 +34,21 @@ form:after {
 }
 
 
-input {
+.inputLogin {
   width: 100%;
-  padding: .4em .5em;
+  /* padding: .4em .5em; */
+  padding: .4em 0;
   background-color: var(--app-grey);
   border: 1px solid var(--app-grey);
   border-radius: .2em;
 }
 
-input:focus {
+.inputLogin:focus {
   outline: none;
   border: 1px solid lightgrey;
 }
 
-input .error{
+.inputLogin .error{
   border: 1px solid var(--error);
 }
 
@@ -60,6 +61,22 @@ small{
 small.show{
   display: block;
 }
+
+.checkboxShowSenha {
+
+  display: none;
+  align-items: center;
+  gap: 16px;
+  justify-content: right;
+
+}
+
+.showSenha {
+
+  display: flex;
+  
+}
+
 
 
 label {
@@ -92,7 +109,7 @@ button:disabled {
   text-align: center;
 }
 .left{
-  width: 50%;  
+  width: 50%;
   background-color: white;
   text-align: center;
   display: flex;

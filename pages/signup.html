@@ -28,28 +28,31 @@
 
       <label>
         Nome completo:
-        <input type="text" id="inputNome" pattern="^(\w{2,})+(\s(\w{2,})+)+$" required>
+        <input class="inputLogin" type="text" id="inputNome" pattern="^(\w{2,})+(\s(\w{2,})+)+$" required>
         <small id="msgErroNome">O campo deve conter nome e sobrenome.</small>
       </label>
       <label>
         Apelido:
-        <input type="text" id="inputApelido" minlength="2" required>
+        <input class="inputLogin" type="text" id="inputApelido" minlength="2" required>
         <small id="msgErroApelido">Campo obrigatório, deve conter no mínimo 2 letras.</small>
       </label>
       <label>
         Email:
-        <input type="email" id="inputEmail" required>
+        <input class="inputLogin" type="email" id="inputEmail" required>
         <small id="msgErroEmail">O campo email é obrigatório.</small>
       </label>
       <label>
         Senha:
-        <input type="password" id="inputSenha" minlength="6" required>
+        <input class="inputLogin" type="password" id="inputSenha" minlength="6" required>
         <small id="msgErroSenha">O campo senha é obrigatório e precisa ter no mínimo 6 dígitos.</small>
       </label>
       <label>
         Repetir senha:
-        <input type="password" id="inputSenhaConfirm" required>
+        <input class="inputLogin" type="password" id="inputSenhaConfirm" required>
         <small id="msgErroConfirmSenha">As senhas estão diferentes.</small>
+      </label>
+      <label class="checkboxShowSenha" for="" id="checkboxShow">Mostar senha
+        <input type="checkbox" name="" id="showPassword">
       </label>
 
       <button id="btnCriarConta" disabled>Criar conta</button>

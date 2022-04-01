@@ -4,6 +4,8 @@ const inputBtnAcessarRef = document.querySelector('#btnAcessar');
 const inputMsgErroEmailRef = document.querySelector('.msgErroEmail');
 const inputMsgErroSenhaRef = document.querySelector('.msgErroSenha');
 const linkCriarContaRef = document.querySelector('a')
+const inputShowSenhaRef = document.querySelector('#showPassword')
+const checkboxSenhaRef = document.querySelector('#checkboxShow')
 
 //Valida email
 const validaEmail = () => {
@@ -27,6 +29,36 @@ const validaSenha = () => {
   }
 }
 
+// Habilita campo com o chechbox para visualizar a senha
+const showFieldCheckbox = () => {
+
+  if(inputSenhaRef.value.length >= 2) {
+
+
+    // console.log('fdgjgj')
+    checkboxSenhaRef.classList.add('showSenha')
+
+  }
+  else {
+
+    checkboxSenhaRef.classList.remove('showSenha')
+  }
+}
+
+// Checkbox para visualizar a senha
+const showSenha = () => {
+
+  if(inputShowSenhaRef.checked){
+
+    inputSenhaRef.type = inputSenhaRef.type == 'text' ? 'password' : 'text'
+  }
+  else {
+
+    inputSenhaRef.type = inputSenhaRef.type == 'password' ? 'text' : 'password'
+
+  }
+}
+
 //Valida todos os campos do formulário
 const validaForm = () => {
   return validaEmail() &&
@@ -44,8 +76,11 @@ const acessarPagCriarConta = () => {
 }
 
 inputEmailRef.addEventListener('keyup', habilitaBtnAcessar);
-inputSenhaRef.addEventListener('keyup', habilitaBtnAcessar);
+inputSenhaRef.addEventListener('keyup', habilitaBtnAcessar)
+inputSenhaRef.addEventListener('keydown', showFieldCheckbox)
 inputBtnAcessarRef.addEventListener('click', (e) => {
   e.preventDefault()
 });
 linkCriarContaRef.addEventListener('click', acessarPagCriarConta)
+
+inputShowSenhaRef.addEventListener('change', showSenha)

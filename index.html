@@ -29,13 +29,16 @@
 
       <label>
         Email:
-        <input id="inputEmail" type="email" required>
+        <input class="inputLogin" id="inputEmail" type="email" required>
         <small class="msgErroEmail">Campo obrigatório, por favor preeencha os dados</small>
       </label>
       <label>
         Senha:
-        <input id="inputPassword" type="password" minlength="6" required>
+        <input class="inputLogin" id="inputPassword" type="password" minlength="6" required>
         <small class="msgErroSenha">A senha precisa ter no mínimo 6 dígitos.</small>
+      </label>
+      <label class="checkboxShowSenha" for="" id="checkboxShow">Mostar senha
+        <input type="checkbox" name="" id="showPassword">
       </label>
 
       <button type="submit" id="btnAcessar" disabled>Acessar</button>

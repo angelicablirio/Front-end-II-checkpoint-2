@@ -11,6 +11,8 @@ const inputMsgErroConfirmSenhaRef = document.querySelector('#msgErroConfirmSenha
 const inputMsgErroApelidoRef = document.querySelector('#msgErroApelido');
 const inputMsgErroEmailRef = document.querySelector('#msgErroEmail');
 const linkLoginRef = document.querySelector('a')
+const inputShowSenhaRef = document.querySelector('#showPassword')
+const checkboxSenhaRef = document.querySelector('#checkboxShow')
 
 //Valida nome
 const validaNome = () => {
@@ -67,6 +69,36 @@ const confirmaSenha = () => {
   }
 }
 
+// Habilita campo com o chechbox para visualizar a senha
+const showFieldCheckbox = () => {
+
+  if(inputSenhaRef.value.length >= 2) {
+
+    checkboxSenhaRef.classList.add('showSenha')
+
+  }
+  else {
+
+    checkboxSenhaRef.classList.remove('showSenha')
+  }
+}
+
+// Checkbox para visualizar a senha
+const showSenha = () => {
+
+  if(inputShowSenhaRef.checked){
+
+    inputSenhaRef.type = inputSenhaRef.type == 'text' ? 'password' : 'text'
+    inputSenhaConfirmRef.type = inputSenhaConfirmRef.type == 'text' ? 'password' : 'text'
+  }
+  else {
+
+    inputSenhaRef.type = inputSenhaRef.type == 'password' ? 'text' : 'password'
+    inputSenhaConfirmRef.type = inputSenhaConfirmRef.type == 'password' ? 'text' : 'password'
+
+  }
+}
+
 //Valida todos os campos do formulário
 const validaFormCriarConta = () => {
   return validaNome() &&
@@ -91,9 +123,10 @@ inputNomeRef.addEventListener('keyup', habilitaBtnCriarConta);
 inputApelidoRef.addEventListener('keyup', habilitaBtnCriarConta);
 inputEmailRef.addEventListener('keyup', habilitaBtnCriarConta);
 inputSenhaRef.addEventListener('keyup', validaSenha);
+inputShowSenhaRef.addEventListener('change', showSenha)
+inputSenhaRef.addEventListener('keydown', showFieldCheckbox)
 inputSenhaConfirmRef.addEventListener('keyup', habilitaBtnCriarConta);
 linkLoginRef.addEventListener('click', acessarPagLogin)
 inputBtnCriarContaRef.addEventListener('click', (e) => {
   e.preventDefault();
 });
-
