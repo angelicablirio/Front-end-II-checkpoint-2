@@ -32,15 +32,12 @@ const validaSenha = () => {
 // Habilita campo com o chechbox para visualizar a senha
 const showFieldCheckbox = () => {
 
-  if(inputSenhaRef.value.length >= 2) {
-
-
+  if (inputSenhaRef.value.length >= 2) {
     // console.log('fdgjgj')
     checkboxSenhaRef.classList.add('showSenha')
 
   }
   else {
-
     checkboxSenhaRef.classList.remove('showSenha')
   }
 }
@@ -48,14 +45,11 @@ const showFieldCheckbox = () => {
 // Checkbox para visualizar a senha
 const showSenha = () => {
 
-  if(inputShowSenhaRef.checked){
-
+  if (inputShowSenhaRef.checked) {
     inputSenhaRef.type = inputSenhaRef.type == 'text' ? 'password' : 'text'
   }
   else {
-
     inputSenhaRef.type = inputSenhaRef.type == 'password' ? 'text' : 'password'
-
   }
 }
 
@@ -76,11 +70,11 @@ const acessarPagCriarConta = () => {
 }
 
 inputEmailRef.addEventListener('keyup', habilitaBtnAcessar);
-inputSenhaRef.addEventListener('keyup', habilitaBtnAcessar)
-inputSenhaRef.addEventListener('keydown', showFieldCheckbox)
-inputBtnAcessarRef.addEventListener('click', (e) => {
+inputSenhaRef.addEventListener('keyup', habilitaBtnAcessar);
+inputSenhaRef.addEventListener('keydown', showFieldCheckbox);
+inputBtnAcessarRef.addEventListener('click', e => {
   e.preventDefault()
-});
-linkCriarContaRef.addEventListener('click', acessarPagCriarConta)
 
-inputShowSenhaRef.addEventListener('change', showSenha)
+});
+linkCriarContaRef.addEventListener('click', acessarPagCriarConta);
+inputShowSenhaRef.addEventListener('change', showSenha);

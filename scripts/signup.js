@@ -69,16 +69,14 @@ const confirmaSenha = () => {
   }
 }
 
-// Habilita campo com o chechbox para visualizar a senha
+// Habilita campo com o checkbox para visualizar a senha
 const showFieldCheckbox = () => {
 
   if(inputSenhaRef.value.length >= 2) {
 
     checkboxSenhaRef.classList.add('showSenha')
-
   }
   else {
-
     checkboxSenhaRef.classList.remove('showSenha')
   }
 }
@@ -87,15 +85,12 @@ const showFieldCheckbox = () => {
 const showSenha = () => {
 
   if(inputShowSenhaRef.checked){
-
     inputSenhaRef.type = inputSenhaRef.type == 'text' ? 'password' : 'text'
     inputSenhaConfirmRef.type = inputSenhaConfirmRef.type == 'text' ? 'password' : 'text'
   }
   else {
-
     inputSenhaRef.type = inputSenhaRef.type == 'password' ? 'text' : 'password'
     inputSenhaConfirmRef.type = inputSenhaConfirmRef.type == 'password' ? 'text' : 'password'
-
   }
 }
 
@@ -127,6 +122,31 @@ inputShowSenhaRef.addEventListener('change', showSenha)
 inputSenhaRef.addEventListener('keydown', showFieldCheckbox)
 inputSenhaConfirmRef.addEventListener('keyup', habilitaBtnCriarConta);
 linkLoginRef.addEventListener('click', acessarPagLogin)
-inputBtnCriarContaRef.addEventListener('click', (e) => {
+inputBtnCriarContaRef.addEventListener('click', e => {
   e.preventDefault();
+
+  let user = {
+    firstName: inputNomeRef.value,
+    lastName: inputApelidoRef.value,
+    email: inputEmailRef.value,
+    password: inputSenhaRef.value
+  }
+
+  let requestHeaders = {
+    'Content-Type': 'application/json'
+  }
+
+  let requestConfig = {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: requestHeaders
+  }
+
+  fetch('https://ctd-todo-api.herokuapp.com/v1/users', requestConfig)
+    .then(response =>{
+      response.json()
+      .then(requestConfig =>{
+        console.log(requestConfig)
+      })
+    })
 });
