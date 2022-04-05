@@ -75,6 +75,35 @@ inputSenhaRef.addEventListener('keydown', showFieldCheckbox);
 inputBtnAcessarRef.addEventListener('click', e => {
   e.preventDefault()
 
+  let usuarioLogin = {
+
+    email: inputEmailRef.value,
+    password: inputSenhaRef.value
+
+  }
+
+  let requestHeaders = {
+    'Content-Type': 'application/json'
+  }
+
+  let requestConfig = {
+    method: 'POST',
+    body: JSON.stringify(usuarioLogin),
+    headers: requestHeaders
+  }
+
+  fetch('https://ctd-todo-api.herokuapp.com/v1/users/login', requestConfig)
+    .then(response =>{
+      response.json()
+      .then(data =>{
+        localStorage.setItem('token', data.jwt)
+        window.location.assign('./pages/tarefas.html')
+    })
+});
+
+
+
+
 });
 linkCriarContaRef.addEventListener('click', acessarPagCriarConta);
 inputShowSenhaRef.addEventListener('change', showSenha);
