@@ -2,8 +2,8 @@ const userNameRef = document.querySelector('#userName');
 const userFotoRef = document.querySelector('.user-image')
 const btnCadastrarTarefasRef = document.querySelector('#cadastrarTarefa');
 const inputNovaTarefaRef = document.querySelector('#novaTarefa');
-const containerTarefas = document.querySelector('#skeleton');
-
+const containerTarefas = document.querySelector('.tarefas-pendentes');
+const skeletonRef = document.querySelector('#skeleton');
 
 //Inserir o nome do úsuário na tela
 const mostraNomeUsuário = () =>{
@@ -28,6 +28,32 @@ const mostraNomeUsuário = () =>{
 //Mostra as tarefas
 const mostraTarefas = () =>{
 
+  let requestHeaders = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token')
+    }
+  }
+
+  fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', requestHeaders)
+    .then(response =>{
+      response.json()
+      .then(data =>{
+        skeletonRef.classList.add('display')
+        let tasks = data
+        for(let task of tasks){
+          containerTarefas.innerHTML += `      
+          <li class="tarefa">
+          <div class="not-done"></div>
+          <div class="descricao">
+            <p class="nome">${task.description}</p>
+            <p class="timestamp">Criada em: ${task.createdAt}</p>
+          </div>
+        </li>
+          `
+        }
+    })
+  });
 }
 
 //Postar as novas tarefas
@@ -51,7 +77,6 @@ const postNovaTarefa = () => {
     .then(response =>{
       response.json()
       .then(data =>{
-        console.log(data)
         containerTarefas.innerHTML += `      
         <li class="tarefa">
         <div class="not-done"></div>

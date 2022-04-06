@@ -243,3 +243,7 @@ a {
   100%{ opacity: 0.8;}
 }
 
+#skeleton.display{
+  display: none;
+}
+
