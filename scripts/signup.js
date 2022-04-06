@@ -1,6 +1,6 @@
 //Referências
 const inputNomeRef = document.querySelector('#inputNome');
-const inputApelidoRef = document.querySelector('#inputApelido');
+const inputSobrenomeRef = document.querySelector('#inputSobrenome');
 const inputEmailRef = document.querySelector('#inputEmail');
 const inputSenhaRef = document.querySelector('#inputSenha');
 const inputSenhaConfirmRef = document.querySelector('#inputSenhaConfirm');
@@ -8,7 +8,7 @@ const inputBtnCriarContaRef = document.querySelector('#btnCriarConta');
 const inputMsgErroNomeRef = document.querySelector('#msgErroNome');
 const inputMsgErroSenhaRef = document.querySelector('#msgErroSenha');
 const inputMsgErroConfirmSenhaRef = document.querySelector('#msgErroConfirmSenha')
-const inputMsgErroApelidoRef = document.querySelector('#msgErroApelido');
+const inputMsgErroSobrenomeRef = document.querySelector('#msgErroSobrenome');
 const inputMsgErroEmailRef = document.querySelector('#msgErroEmail');
 const linkLoginRef = document.querySelector('a')
 const inputShowSenhaRef = document.querySelector('#showPassword')
@@ -26,12 +26,12 @@ const validaNome = () => {
 }
 
 //Valida apelido
-const validaApelido = () => {
-  if (inputApelidoRef.checkValidity()) {
-    inputMsgErroApelidoRef.classList.remove('show');
+const validaSobrenome = () => {
+  if (inputSobrenomeRef.checkValidity()) {
+    inputMsgErroSobrenomeRef.classList.remove('show');
     return true;
   } else {
-    inputMsgErroApelidoRef.classList.add('show');
+    inputMsgErroSobrenomeRef.classList.add('show');
     return false;
   }
 }
@@ -72,8 +72,7 @@ const confirmaSenha = () => {
 // Habilita campo com o checkbox para visualizar a senha
 const showFieldCheckbox = () => {
 
-  if(inputSenhaRef.value.length >= 2) {
-
+  if (inputSenhaRef.value.length >= 2) {
     checkboxSenhaRef.classList.add('showSenha')
   }
   else {
@@ -97,7 +96,7 @@ const showSenha = () => {
 //Valida todos os campos do formulário
 const validaFormCriarConta = () => {
   return validaNome() &&
-  validaApelido() &&
+  validaSobrenome() &&
   validaEmail() &&
   validaSenha() &&
   confirmaSenha()
@@ -108,26 +107,11 @@ const habilitaBtnCriarConta = () => {
   inputBtnCriarContaRef.disabled = !validaFormCriarConta();
 }
 
-//Acessar a página do login caso já tenha conta
-const acessarPagLogin = () => {
-  window.location.assign("../index.html")
-}
-
-//Chama as funções
-inputNomeRef.addEventListener('keyup', habilitaBtnCriarConta);
-inputApelidoRef.addEventListener('keyup', habilitaBtnCriarConta);
-inputEmailRef.addEventListener('keyup', habilitaBtnCriarConta);
-inputSenhaRef.addEventListener('keyup', validaSenha);
-inputShowSenhaRef.addEventListener('change', showSenha)
-inputSenhaRef.addEventListener('keydown', showFieldCheckbox)
-inputSenhaConfirmRef.addEventListener('keyup', habilitaBtnCriarConta);
-linkLoginRef.addEventListener('click', acessarPagLogin)
-inputBtnCriarContaRef.addEventListener('click', e => {
-  e.preventDefault();
-
+//Cria a conta do usuário
+const criarLoginUsuario = () =>{
   let user = {
     firstName: inputNomeRef.value,
-    lastName: inputApelidoRef.value,
+    lastName: inputSobrenomeRef.value,
     email: inputEmailRef.value,
     password: inputSenhaRef.value
   }
@@ -147,6 +131,27 @@ inputBtnCriarContaRef.addEventListener('click', e => {
       response.json()
       .then(requestConfig =>{
         console.log(requestConfig)
-      })
-    })
+        window.location.assign('../index.html')
+      });
+    });
+}
+
+//Acessar a página do login caso já tenha conta
+const acessarPagLogin = () => {
+  window.location.assign("../index.html")
+}
+
+//Chama as funções
+inputNomeRef.addEventListener('keyup', habilitaBtnCriarConta);
+inputSobrenomeRef.addEventListener('keyup', habilitaBtnCriarConta);
+inputEmailRef.addEventListener('keyup', habilitaBtnCriarConta);
+inputSenhaRef.addEventListener('keyup', validaSenha);
+inputShowSenhaRef.addEventListener('change', showSenha)
+inputSenhaRef.addEventListener('keydown', showFieldCheckbox)
+inputSenhaConfirmRef.addEventListener('keyup', habilitaBtnCriarConta);
+linkLoginRef.addEventListener('click', acessarPagLogin)
+inputBtnCriarContaRef.addEventListener('click', e => {
+  e.preventDefault();
+  criarLoginUsuario();
+
 });

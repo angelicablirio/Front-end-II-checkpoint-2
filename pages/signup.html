@@ -27,14 +27,14 @@
       </div>
 
       <label>
-        Nome completo:
-        <input class="inputLogin" type="text" id="inputNome" pattern="^(\w{2,})+(\s(\w{2,})+)+$" required>
-        <small id="msgErroNome">O campo deve conter nome e sobrenome.</small>
+        Nome:
+        <input class="inputLogin" type="text" id="inputNome" minlength="3" required>
+        <small id="msgErroNome">O campo deve conter no mínimo 3 letras.</small>
       </label>
       <label>
-        Apelido:
-        <input class="inputLogin" type="text" id="inputApelido" minlength="2" required>
-        <small id="msgErroApelido">Campo obrigatório, deve conter no mínimo 2 letras.</small>
+        Sobrenome:
+        <input class="inputLogin" type="text" id="inputSobrenome" minlength="2" required>
+        <small id="msgErroSobrenome">O campo deve conter no mínimo 2 letras.</small>
       </label>
       <label>
         Email:

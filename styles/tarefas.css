@@ -225,20 +225,12 @@ a {
 }
 
 #skeleton .descricao{
-  background-color: rgb(189, 189, 189);
+  background-color: var(--app-tarefas)
 }
 #skeleton p{
-  background-color: rgb(214, 214, 214);
   color: rgb(214, 214, 214);
 }
 #skeleton .not-done{
   background-color: rgb(189, 189, 189);
 }
 
-#skeleton{
-  animation: trasparencia 1s infinite;
-}
-@keyframes trasparencia {
-  0%{ opacity: 0.5;}
-  100%{ opacity: 0.8;}
-}

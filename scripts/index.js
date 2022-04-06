@@ -64,22 +64,12 @@ const habilitaBtnAcessar = () =>{
   inputBtnAcessarRef.disabled = !validaForm();
 }
 
-//Acessar a página do para criar conta caso não tenha
-const acessarPagCriarConta = () => {
-  window.location.assign("./pages/signup.html");
-}
-
-inputEmailRef.addEventListener('keyup', habilitaBtnAcessar);
-inputSenhaRef.addEventListener('keyup', habilitaBtnAcessar);
-inputSenhaRef.addEventListener('keydown', showFieldCheckbox);
-inputBtnAcessarRef.addEventListener('click', e => {
-  e.preventDefault()
+//Faz o login do usuário
+const loginUsuario = () =>{
 
   let usuarioLogin = {
-
     email: inputEmailRef.value,
     password: inputSenhaRef.value
-
   }
 
   let requestHeaders = {
@@ -99,11 +89,20 @@ inputBtnAcessarRef.addEventListener('click', e => {
         localStorage.setItem('token', data.jwt)
         window.location.assign('./pages/tarefas.html')
     })
-});
+  })
+}
 
+//Acessar a página do para criar conta caso não tenha
+const acessarPagCriarConta = () => {
+  window.location.assign("./pages/signup.html");
+}
 
-
-
+inputEmailRef.addEventListener('keyup', habilitaBtnAcessar);
+inputSenhaRef.addEventListener('keyup', habilitaBtnAcessar);
+inputSenhaRef.addEventListener('keydown', showFieldCheckbox);
+inputBtnAcessarRef.addEventListener('click', e => {
+  e.preventDefault();
+  loginUsuario();
 });
 linkCriarContaRef.addEventListener('click', acessarPagCriarConta);
 inputShowSenhaRef.addEventListener('change', showSenha);
