@@ -1,6 +1,6 @@
 # Checkpoint 2 - Front-end II
 
-<p>Aplicação ToDo construído em JavaScript utilizando API</p>
+<p>Aplicação <a href="https://angelicablirio.github.io/Front-end-II-checkpoint-2/">ToDo</a> construído em JavaScript utilizando API</p>
 
 Integrantes:
 <ul>
