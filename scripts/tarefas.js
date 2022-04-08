@@ -7,9 +7,14 @@ const skeletonRef = document.querySelector('#skeleton');
 const btnRemoverTarefaRef = document.querySelector('.bin-img');
 const btnCloseAppRef = document.querySelector('#closeApp');
 
-//Formata data **falta criar a função
-let date = new Date();
-
+//Formata data
+let date = new Date()
+const dataFormatada =
+  date.toLocaleDateString('pt-BR', {
+    day:   '2-digit',
+    month: '2-digit',
+    year:  'numeric',
+  });
 
 //Insere o nome do usuário na tela
 const mostraNomeUsuário = () =>{
@@ -47,13 +52,17 @@ const mostraTarefas = () =>{
       .then(data =>{
         skeletonRef.classList.add('display')
         let tasks = data
-        for(let task of tasks){
+        for(let task of tasks){ //rever a formatação da data, acredito que tenha uma forma de melhorar
           containerTarefas.innerHTML += `      
           <li class="tarefa">
           <div class="not-done"></div>
           <div class="descricao">
             <p class="nome">${task.description}</p>
-            <p class="timestamp">Criada em: ${task.createdAt}</p>
+            <p class="timestamp">Criada em: ${new Date(task.createdAt).toLocaleDateString('pt-BR', {
+              day:   '2-digit',
+              month: '2-digit',
+              year:  'numeric',
+            })}</p>
             <img class="bin-img" src="../assets/bin.png" alt="Remover tarefa">
           </div>
         </li>
@@ -90,7 +99,7 @@ const postNovaTarefa = () => {
             <div class="not-done"></div>
             <div class="descricao">
               <p class="nome">${data.description}</p>
-              <p class="timestamp">Criada em: ${date.toLocaleDateString()}</p>
+              <p class="timestamp">Criada em: ${dataFormatada}</p>
               <img class="bin-img"src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
