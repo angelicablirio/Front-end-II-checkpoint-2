@@ -1,5 +1,5 @@
 const userNameRef = document.querySelector('#userName');
-const userFotoRef = document.querySelector('.user-image')
+const userFotoRef = document.querySelector('.user-image');
 const btnCadastrarTarefasRef = document.querySelector('#cadastrarTarefa');
 const inputNovaTarefaRef = document.querySelector('#novaTarefa');
 const containerTarefas = document.querySelector('.tarefas-pendentes');
@@ -22,7 +22,7 @@ const mostraNomeUsuário = () =>{
       .then(data =>{
         userNameRef.innerHTML = `${data.firstName} ${data.lastName}`;
         userFotoRef.src = '../assets/foto-login.png'
-    })
+    });
   });
 }
 
@@ -54,7 +54,7 @@ const mostraTarefas = () =>{
         </li>
           `
         }
-    })
+    });
   });
 }
 
@@ -90,9 +90,11 @@ const postNovaTarefa = () => {
         </div>
       </li>
         `
-      })
-    })
+      });
+    });
 }
+
+//Remove tarefa
 const removerTarefa = () => {
 
   let requestConfig = {

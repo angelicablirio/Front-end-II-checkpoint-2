@@ -1,5 +1,7 @@
 # Checkpoint 2 - Front-end II
 
+<p>Aplicação ToDo construído em JavaScript utilizando API</p>
+
 Integrantes:
 <ul>
   <li>Angelica Barbieri Lirio</li>
