@@ -5,8 +5,13 @@ const inputNovaTarefaRef = document.querySelector('#novaTarefa');
 const containerTarefas = document.querySelector('.tarefas-pendentes');
 const skeletonRef = document.querySelector('#skeleton');
 const btnRemoverTarefaRef = document.querySelector('.bin-img');
+const btnCloseAppRef = document.querySelector('#closeApp');
 
-//Inserir o nome do úsuário na tela
+//Formata data
+let date = new Date();
+
+
+//Insere o nome do usuário na tela
 const mostraNomeUsuário = () =>{
 
   let requestHeaders = {
@@ -58,9 +63,8 @@ const mostraTarefas = () =>{
   });
 }
 
-//Postar as novas tarefas
+//Posta as novas tarefas
 const postNovaTarefa = () => {
-  let date = new Date();
   let tasksRegister = {
     description: inputNovaTarefaRef.value,
     completed: false,
@@ -75,26 +79,30 @@ const postNovaTarefa = () => {
     }
   }
 
-  fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', requestConfig)
-    .then(response => {
-      response.json()
-      .then(data =>{
-        console.log(data)
-        containerTarefas.innerHTML += `      
-        <li class="tarefa">
-        <div class="not-done"></div>
-        <div class="descricao">
-          <p class="nome">${data.description}</p>
-          <p class="timestamp">Criada em: ${date.toLocaleDateString()}</p>
-          <img class="bin-img"src="../assets/bin.png" alt="Remover tarefa">
-        </div>
-      </li>
-        `
+  if(tasksRegister.description !== ''){
+    fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', requestConfig)
+      .then(response => {
+        response.json()
+        .then(data =>{
+          console.log(data)
+            containerTarefas.innerHTML += `      
+            <li class="tarefa">
+            <div class="not-done"></div>
+            <div class="descricao">
+              <p class="nome">${data.description}</p>
+              <p class="timestamp">Criada em: ${date.toLocaleDateString()}</p>
+              <img class="bin-img"src="../assets/bin.png" alt="Remover tarefa">
+            </div>
+          </li>
+            `
       });
     });
+  } else {
+     alert('Por favor preencha o nome da tarefa!')
+    }
 }
 
-//Remove tarefa
+//Remove tarefa **não está funcionando pedi ajuda para o assitente técnico
 const removerTarefa = () => {
 
   let requestConfig = {
@@ -114,9 +122,20 @@ const removerTarefa = () => {
  });
 }
 
+//Sai do App
+const logoutApp = () => {
+
+}
+
+
+//Invoca as funções
 mostraNomeUsuário();
 mostraTarefas();
-btnCadastrarTarefasRef.addEventListener('click', postNovaTarefa);
+btnCadastrarTarefasRef.addEventListener('click', e =>{
+  e.preventDefault()
+  postNovaTarefa()
+});
 btnRemoverTarefaRef.addEventListener('click', removerTarefa);
+btnCloseAppRef.addEventListener('click', logoutApp);
 
 
