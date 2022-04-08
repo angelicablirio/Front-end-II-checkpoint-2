@@ -7,7 +7,7 @@ const skeletonRef = document.querySelector('#skeleton');
 const btnRemoverTarefaRef = document.querySelector('.bin-img');
 const btnCloseAppRef = document.querySelector('#closeApp');
 
-//Formata data
+//Formata data **falta criar a função
 let date = new Date();
 
 
@@ -122,7 +122,7 @@ const removerTarefa = () => {
  });
 }
 
-//Sai do App
+//Sai do App **falta criar a função
 const logoutApp = () => {
 
 }
