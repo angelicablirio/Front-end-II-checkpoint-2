@@ -1,10 +1,13 @@
 @import url('./common.css');
 header {
   display: flex;
+  position: relative;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   box-shadow: 0px 3px 5px lightgrey;
   padding: 0 3em;
-  margin-bottom: 2em;
+  /* margin-bottom: 2em; */
+  /* width: 100%; */
+  overflow: hidden;
 }
 
 a {
@@ -21,6 +24,7 @@ a {
   align-items: center;
   margin-left: auto;
   color: rgb(223, 223, 223);
+
 }
 
 .user-info p {
@@ -253,3 +257,58 @@ a {
   display: none;
 }
 
+
+.alerta {
+
+  display: flex;
+  padding: 24px 48px;
+  justify-content: right;
+  align-items: center;
+  gap: 32px;
+  opacity: 0;
+  margin-bottom: 32px;
+  transition: opacity 1s ease-in-out;
+  background-color: rgb(211, 134, 134);
+  overflow: hidden;
+
+}
+
+.alertaShow {
+
+  display: flex;
+  justify-content: right;
+  background-color: rgb(211, 134, 134);
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+
+
+}
+
+.alerta p {
+
+  color: white;
+  font-size: 14px;
+
+}
+
+
+.alerta button {
+
+  padding: 8px 32px;
+  border: solid 1px white;
+  cursor: pointer;
+  background: transparent;
+  color: white;
+  border-radius: 8px;
+
+
+}
+
+.alerta button:nth-last-child(1) {
+
+
+  border: none;
+  background: white;
+  color: black;
+
+}

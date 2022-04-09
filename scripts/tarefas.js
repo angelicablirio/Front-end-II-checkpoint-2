@@ -6,6 +6,9 @@ const containerTarefas = document.querySelector('.tarefas-pendentes');
 const skeletonRef = document.querySelector('#skeleton');
 const btnRemoverTarefaRef = document.querySelector('.bin-img');
 const btnCloseAppRef = document.querySelector('#closeApp');
+const alertaShowRef = document.querySelector('#alertShow')
+const btnConfirmLogout = document.querySelector('#confirmLogout')
+const btnCancelLogout = document.querySelector('#cancelLogout')
 
 //Formata data
 let date = new Date()
@@ -53,7 +56,7 @@ const mostraTarefas = () =>{
         skeletonRef.classList.add('display')
         let tasks = data
         for(let task of tasks){ //rever a formatação da data, acredito que tenha uma forma de melhorar
-          containerTarefas.innerHTML += `      
+          containerTarefas.innerHTML += `
           <li class="tarefa">
           <div class="not-done"></div>
           <div class="descricao">
@@ -94,7 +97,7 @@ const postNovaTarefa = () => {
         response.json()
         .then(data =>{
           console.log(data)
-            containerTarefas.innerHTML += `      
+            containerTarefas.innerHTML += `
             <li class="tarefa">
             <div class="not-done"></div>
             <div class="descricao">
@@ -122,7 +125,7 @@ const removerTarefa = () => {
     }
   }
 
-  fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig) 
+  fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
     .then(response => {
       response.json()
     .then(data => {
@@ -134,7 +137,29 @@ const removerTarefa = () => {
 //Sai do App **falta criar a função
 const logoutApp = () => {
 
+  if(btnCloseAppRef.click){
+    alertaShowRef.classList.add('alertaShow')
+  }
 }
+
+const confirmLogout = () => {
+
+  if(btnConfirmLogout.click){
+    console.log('ok')
+
+    localStorage.removeItem('token')
+    window.location.assign('../index.html')
+  }
+}
+
+const cancelLogout = () => {
+
+  if(btnCancelLogout.click){
+
+    alertaShowRef.classList.remove('alertaShow')
+  }
+}
+
 
 
 //Invoca as funções
@@ -147,4 +172,5 @@ btnCadastrarTarefasRef.addEventListener('click', e =>{
 btnRemoverTarefaRef.addEventListener('click', removerTarefa);
 btnCloseAppRef.addEventListener('click', logoutApp);
 
-
+btnConfirmLogout.addEventListener('click', confirmLogout );
+btnCancelLogout.addEventListener('click', cancelLogout);
