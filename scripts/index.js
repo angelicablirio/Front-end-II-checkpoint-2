@@ -83,13 +83,21 @@ const loginUsuario = () =>{
   }
 
   fetch('https://ctd-todo-api.herokuapp.com/v1/users/login', requestConfig)
-    .then(response =>{
+
+   .then(response =>{
+    if(response.ok) {
       response.json()
       .then(data =>{
         localStorage.setItem('token', data.jwt)
         window.location.assign('./pages/tarefas.html')
     })
+    console.log('usuario cadastrado')
+  }
+  else {
+    alert('usuario não cadastrado')
+  }
   })
+
 }
 
 //Acessar a página do para criar conta caso não tenha
