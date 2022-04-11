@@ -257,6 +257,11 @@ a {
   display: none;
 }
 
+.done {
+
+  background-color: var(--secondary);
+}
+
 
 .alerta {
 

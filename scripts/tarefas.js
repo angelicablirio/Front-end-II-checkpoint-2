@@ -4,12 +4,13 @@ const btnCadastrarTarefasRef = document.querySelector('#cadastrarTarefa');
 const inputNovaTarefaRef = document.querySelector('#novaTarefa');
 const containerTarefas = document.querySelector('.tarefas-pendentes');
 const skeletonRef = document.querySelector('#skeleton');
-const btnRemoverTarefaRef = document.querySelector('.bin-img');
 const btnCloseAppRef = document.querySelector('#closeApp');
 const alertaShowRef = document.querySelector('#alertShow')
 const btnConfirmLogout = document.querySelector('#confirmLogout')
 const btnCancelLogout = document.querySelector('#cancelLogout')
-
+const containerTarefasTerminadasRef = document.querySelector('.tarefas-terminadas')
+const alterarStatusRef = document.querySelector('#alterarStatus')
+let btnsRemoverTarefaRef;
 //Formata data
 let date = new Date()
 const dataFormatada =
@@ -24,8 +25,8 @@ const mostraNomeUsuário = () =>{
 
   let requestHeaders = {
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: localStorage.getItem('token')
+      "Content-Type": 'application/json',
+      "Authorization": localStorage.getItem('token')
     }
   }
 
@@ -44,8 +45,8 @@ const mostraTarefas = () =>{
 
   let requestHeaders = {
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: localStorage.getItem('token')
+      "Content-Type": 'application/json',
+      "Authorization": localStorage.getItem('token')
     }
   }
 
@@ -56,24 +57,44 @@ const mostraTarefas = () =>{
         skeletonRef.classList.add('display')
         let tasks = data
         for(let task of tasks){ //rever a formatação da data, acredito que tenha uma forma de melhorar
-          containerTarefas.innerHTML += `
-          <li class="tarefa">
-          <div class="not-done"></div>
-          <div class="descricao">
-            <p class="nome">${task.description}</p>
-            <p class="timestamp">Criada em: ${new Date(task.createdAt).toLocaleDateString('pt-BR', {
-              day:   '2-digit',
-              month: '2-digit',
-              year:  'numeric',
-            })}</p>
-            <img class="bin-img" src="../assets/bin.png" alt="Remover tarefa">
-          </div>
-        </li>
-          `
+
+          if(!task.completed){
+            containerTarefas.innerHTML += `
+            <li class="tarefa">
+            <div class="not-done"></div>
+            <div class="descricao">
+              <p class="nome">${task.description}</p>
+              <p class="timestamp">Criada em: ${new Date(task.createdAt).toLocaleDateString('pt-BR', {
+                day:   '2-digit',
+                month: '2-digit',
+                year:  'numeric',
+              })}</p>
+              <img class="bin-img" src="../assets/bin.png" alt="Remover tarefa">
+            </div>
+          </li>
+            `
+          }else {
+            containerTarefasTerminadasRef.innerHTML += `
+            <li class="tarefa">
+            <div class="not-done" id="alterarStatus"></div>
+            <div class="descricao">
+              <p class="nome">${task.description}</p>
+              <p class="timestamp">Criada em: ${new Date(task.createdAt).toLocaleDateString('pt-BR', {
+                day:   '2-digit',
+                month: '2-digit',
+                year:  'numeric',
+              })}</p>
+              <img class="bin-img" onclick = "removerTarefa()" src="../assets/bin.png" alt="Remover tarefa">
+            </div>
+          </li>
+            `
+
+          }
         }
     });
   });
 }
+
 
 //Posta as novas tarefas
 const postNovaTarefa = () => {
@@ -120,8 +141,8 @@ const removerTarefa = () => {
   let requestConfig = {
     method: 'DELETE',
     headers: {
-      'Content-Type':'application/json',
-      Authorization: localStorage.getItem('token')
+      "Content-Type":'application/json',
+      "Authorization": localStorage.getItem('token')
     }
   }
 
@@ -134,7 +155,7 @@ const removerTarefa = () => {
  });
 }
 
-//Sai do App **falta criar a função
+//Sai do App
 const logoutApp = () => {
 
   if(btnCloseAppRef.click){
@@ -169,7 +190,7 @@ btnCadastrarTarefasRef.addEventListener('click', e =>{
   e.preventDefault()
   postNovaTarefa()
 });
-btnRemoverTarefaRef.addEventListener('click', removerTarefa);
+
 btnCloseAppRef.addEventListener('click', logoutApp);
 
 btnConfirmLogout.addEventListener('click', confirmLogout );
