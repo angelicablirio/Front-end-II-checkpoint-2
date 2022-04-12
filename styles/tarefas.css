@@ -257,11 +257,6 @@ a {
   display: none;
 }
 
-.done {
-
-  background-color: var(--secondary);
-}
-
 
 .alerta {
 
@@ -329,3 +324,24 @@ a {
 
   background-color: white;
 }
+
+.back-to-top a {
+  text-decoration: none;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #f7f7f7;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: #888888;
+  transform: rotate(-90deg);
+  border: 0.1rem solid #888888;
+  opacity: .9;
+  z-index: 10;
+  
+}
+

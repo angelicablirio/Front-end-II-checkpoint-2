@@ -5,12 +5,15 @@ const inputNovaTarefaRef = document.querySelector('#novaTarefa');
 const containerTarefas = document.querySelector('.tarefas-pendentes');
 const skeletonRef = document.querySelector('#skeleton');
 const btnCloseAppRef = document.querySelector('#closeApp');
-const alertaShowRef = document.querySelector('#alertShow')
-const btnConfirmLogout = document.querySelector('#confirmLogout')
-const btnCancelLogout = document.querySelector('#cancelLogout')
-const containerTarefasTerminadasRef = document.querySelector('.tarefas-terminadas')
-const alterarStatusRef = document.querySelector('#alterarStatus')
+const alertaShowRef = document.querySelector('#alertShow');
+const btnConfirmLogout = document.querySelector('#confirmLogout');
+const btnCancelLogout = document.querySelector('#cancelLogout');
+const containerTarefasTerminadasRef = document.querySelector('.tarefas-terminadas');
+const alterarStatusRef = document.querySelector('#alterarStatus');
+
 let btnsRemoverTarefaRef;
+
+
 //Formata data
 let date = new Date()
 const dataFormatada =
@@ -61,7 +64,7 @@ const mostraTarefas = () =>{
           if(!task.completed){
             containerTarefas.innerHTML += `
             <li class="tarefa">
-            <div class="not-done"></div>
+            <div class="not-done" onclick = "marcarTarefa(${task.id})" ></div>
             <div class="descricao">
               <p class="nome">${task.description}</p>
               <p class="timestamp">Criada em: ${new Date(task.createdAt).toLocaleDateString('pt-BR', {
@@ -69,14 +72,14 @@ const mostraTarefas = () =>{
                 month: '2-digit',
                 year:  'numeric',
               })}</p>
-              <img class="bin-img" src="../assets/bin.png" alt="Remover tarefa">
+              <img class="bin-img" onclick = "removerTarefa(${task.id})"  src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
             `
           }else {
             containerTarefasTerminadasRef.innerHTML += `
             <li class="tarefa">
-            <div class="not-done" id="alterarStatus"></div>
+            <div class="not-done" onclick = "desmarcarTarefa(${task.id})" id="alterarStatus"></div>
             <div class="descricao">
               <p class="nome">${task.description}</p>
               <p class="timestamp">Criada em: ${new Date(task.createdAt).toLocaleDateString('pt-BR', {
@@ -84,16 +87,16 @@ const mostraTarefas = () =>{
                 month: '2-digit',
                 year:  'numeric',
               })}</p>
-              <img class="bin-img" onclick = "removerTarefa()" src="../assets/bin.png" alt="Remover tarefa">
+              <img class="bin-img" onclick = "removerTarefa(${task.id})" src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
             `
-
           }
         }
     });
   });
 }
+
 
 
 //Posta as novas tarefas
@@ -117,7 +120,6 @@ const postNovaTarefa = () => {
       .then(response => {
         response.json()
         .then(data =>{
-          console.log(data)
             containerTarefas.innerHTML += `
             <li class="tarefa">
             <div class="not-done"></div>
@@ -128,6 +130,7 @@ const postNovaTarefa = () => {
             </div>
           </li>
             `
+            renderizaApp()
       });
     });
   } else {
@@ -135,8 +138,52 @@ const postNovaTarefa = () => {
     }
 }
 
-//Remove tarefa **não está funcionando pedi ajuda para o assitente técnico
-const removerTarefa = () => {
+//Atualiza status da tarefa
+
+const marcarTarefa = (id) => {
+  let requestConfig = {
+    method: 'PUT',
+    body: JSON.stringify({ completed:true }),
+    headers: {
+      "Content-Type":'application/json',
+      "Authorization": localStorage.getItem('token')
+    }
+  }
+
+  fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
+    .then(response => {
+      if(response.ok){
+        renderizaApp()
+    }
+  })
+}
+
+//Desmarcar tarefa
+const desmarcarTarefa = (id) => {
+  let requestConfig = {
+    method: 'PUT',
+    body: JSON.stringify({ completed:false }),
+    headers: {
+      "Content-Type":'application/json',
+      "Authorization": localStorage.getItem('token')
+    }
+  }
+
+  fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
+    .then(response => {
+      if(response.ok){
+        renderizaApp()
+    }
+  })
+}
+
+//Renderiza app
+const renderizaApp = () =>{
+  document.location.reload()
+}
+
+//Remove tarefa
+const removerTarefa = (id) => {
 
   let requestConfig = {
     method: 'DELETE',
@@ -150,7 +197,7 @@ const removerTarefa = () => {
     .then(response => {
       response.json()
     .then(data => {
-      console.log(data)
+      renderizaApp()
     });
  });
 }
