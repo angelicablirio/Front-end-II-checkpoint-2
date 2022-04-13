@@ -9,6 +9,7 @@
 
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
   <link rel="stylesheet" href="../styles/acesso.css">
+  <link rel="stylesheet" href="../styles/responsivo.css">
 
   <!-- ---------------------- lógica aplicada no registro -------------------- -->
     <!--<script src="/scripts/utils.js"></script> -->
@@ -23,7 +24,8 @@
   <div class="right">
     <form>
       <div class="form-header">
-        <p>To-Do App</p>
+        <!-- <p>To-Do App</p> -->
+        <p>Cadastre-se</p>
       </div>
 
       <label>
@@ -54,7 +56,7 @@
       <label class="checkboxShowSenha" for="" id="checkboxShow">Mostar senha
         <input type="checkbox" name="" id="showPassword">
       </label>
-
+      <span class="alertIdentUser" id="alertUser">Usuario ja cadastrado</span>
       <button id="btnCriarConta" disabled>Criar conta</button>
 
     </form>

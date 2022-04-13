@@ -74,10 +74,30 @@ small.show{
 .showSenha {
 
   display: flex;
-  
+
 }
 
+.alertIdentUser {
 
+  opacity: 0;
+  background-color: var(--bg-alert);
+  font-size: 12px;
+  margin: 16px 0 0 0;
+  color: var(--error);
+  padding: 4px 16px;
+  transition: 0.6s;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+
+}
+
+.alertIdentUserShow {
+
+  opacity: 1;
+  display: block;
+
+}
 
 label {
   width: 100%;
@@ -91,7 +111,7 @@ button {
   padding: .5em 3em;
   background-color: var(--secondary);
   color: white;
-  margin-top: 2em;
+  margin-top: 1em;
   font-weight: 400;
   font-size: 1em;
 }
@@ -110,7 +130,6 @@ button:disabled {
 }
 .left{
   width: 50%;
-  background-color: white;
   text-align: center;
   display: flex;
   align-items: center;

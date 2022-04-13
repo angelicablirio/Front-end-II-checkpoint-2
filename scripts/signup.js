@@ -13,6 +13,7 @@ const inputMsgErroEmailRef = document.querySelector('#msgErroEmail');
 const linkLoginRef = document.querySelector('a')
 const inputShowSenhaRef = document.querySelector('#showPassword')
 const checkboxSenhaRef = document.querySelector('#checkboxShow')
+const alertIdentUserRef = document.querySelector('#alertUser')
 
 //Valida nome
 const validaNome = () => {
@@ -125,14 +126,21 @@ const criarLoginUsuario = () =>{
     body: JSON.stringify(user),
     headers: requestHeaders
   }
-
   fetch('https://ctd-todo-api.herokuapp.com/v1/users', requestConfig)
     .then(response =>{
+      if(response.ok){
+        console.log(response)
       response.json()
+
       .then(requestConfig =>{
         console.log(requestConfig)
         window.location.assign('../index.html')
       });
+      }
+      else {
+
+        alertIdentUserRef.classList.add('alertIdentUserShow')
+      }
     });
 }
 

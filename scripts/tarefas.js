@@ -10,9 +10,18 @@ const btnConfirmLogout = document.querySelector('#confirmLogout');
 const btnCancelLogout = document.querySelector('#cancelLogout');
 const containerTarefasTerminadasRef = document.querySelector('.tarefas-terminadas');
 const alterarStatusRef = document.querySelector('#alterarStatus');
+const menuToggleRef = document.querySelector('#menu-toggle')
 
 let btnsRemoverTarefaRef;
 
+// menu hamburguer
+const menuToggle = (event) => {
+
+  event.preventDefault()
+  const mostrarMenu = document.querySelector('#showMenu')
+  mostrarMenu.classList.toggle('menuAtivo')
+
+}
 
 //Formata data
 let date = new Date()
@@ -233,6 +242,7 @@ const cancelLogout = () => {
 //Invoca as funções
 mostraNomeUsuário();
 mostraTarefas();
+menuToggleRef.addEventListener('click', menuToggle)
 btnCadastrarTarefasRef.addEventListener('click', e =>{
   e.preventDefault()
   postNovaTarefa()

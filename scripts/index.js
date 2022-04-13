@@ -6,11 +6,13 @@ const inputMsgErroSenhaRef = document.querySelector('.msgErroSenha');
 const linkCriarContaRef = document.querySelector('a')
 const inputShowSenhaRef = document.querySelector('#showPassword')
 const checkboxSenhaRef = document.querySelector('#checkboxShow')
+const alertIdentUserRef = document.querySelector('#alertUser')
 
 //Valida email
 const validaEmail = () => {
   if (inputEmailRef.checkValidity()) {
     inputMsgErroEmailRef.classList.remove('show')
+    alertIdentUserRef.classList.remove('alertIdentUserShow')
     return true;
   } else {
     inputMsgErroEmailRef.classList.add('show')
@@ -91,10 +93,11 @@ const loginUsuario = () =>{
         localStorage.setItem('token', data.jwt)
         window.location.assign('./pages/tarefas.html')
     })
-    console.log('usuario cadastrado')
+
   }
   else {
-    alert('usuario não cadastrado')
+    alertIdentUserRef.classList.add('alertIdentUserShow')
+
   }
   })
 

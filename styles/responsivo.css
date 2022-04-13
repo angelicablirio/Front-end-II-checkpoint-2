@@ -1,0 +1,166 @@
+@media (max-width: 500px) {
+
+/* Tela login */
+  body{
+
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+
+  }
+
+  .left {
+
+       width: 100%;
+       background-color: transparent;
+
+  }
+
+  .left img {
+
+    width: 100%;
+    border-radius: 0 0 50% 50%;
+
+  }
+
+  .right {
+
+    width: 100%;
+
+  }
+
+  form {
+
+    box-shadow: none;
+    width: 100%;
+    border-radius: 16px;
+
+  }
+
+  form:after {
+
+    display: none;
+  }
+
+  .ingressar{
+
+    margin-bottom: 64px;
+
+  }
+
+  /* Tarefas */
+
+  header {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    box-shadow: 0px 3px 5px lightgrey;
+    padding: 0 1em;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 1;
+    margin-bottom: 100px;
+
+  }
+
+  .menu-mobile {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 16px;
+        font-size: 14px;
+        border:none;
+        background: none;
+        cursor: pointer;
+        margin-top: 10px;
+        /* margin:  auto 0; */
+
+  }
+
+  .menu-mobile::after {
+
+    display: block;
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    margin-top: 5px;
+    transition: 0.6s;
+    position: relative;
+
+  }
+
+ .menu-mobile::before {
+
+    display: block;
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    margin-top: 5px;
+    transition: 0.6s;
+    position: relative;
+  }
+
+  .user-info {
+    opacity: 0;
+    position: relative;
+    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    color: rgb(223, 223, 223);
+    height: 0;
+    margin: 0 auto;
+    left: 200px;
+    transition: 0.6s;
+    visibility: hidden;
+    overflow: hidden;
+    padding-top: 100px;
+    z-index: 1;
+
+  }
+
+  .menuAtivo {
+
+    opacity: 1;
+    display: flex;
+    height: 40vh;
+    left: 0;
+    visibility: visible;
+    z-index: 2;
+    transition: 1s;
+
+  }
+
+  .alerta {
+
+    display: flex;
+    position: fixed;
+    padding: 24px 48px;
+    justify-content: right;
+    align-items: center;
+    gap: 32px;
+    opacity: 0;
+    margin-bottom: 32px;
+    transition: opacity 0.6s ease-in-out;
+    z-index: 30;
+    top: 44%;
+
+  }
+
+  .alertaShow {
+
+    display: flex;
+    justify-content: right;
+    background-color: var(--bg-alert);
+    transition: opacity 0.6s ease-in-out;
+    opacity: 1;
+
+
+  }
+}

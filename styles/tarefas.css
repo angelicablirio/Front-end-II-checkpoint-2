@@ -2,12 +2,14 @@
 header {
   display: flex;
   position: relative;
+  justify-content: space-between;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   box-shadow: 0px 3px 5px lightgrey;
   padding: 0 3em;
   /* margin-bottom: 2em; */
   /* width: 100%; */
   overflow: hidden;
+
 }
 
 a {
@@ -19,8 +21,17 @@ a {
   color: white
 }
 
+.menu-infos-login{
+
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+
+}
+
 .user-info {
   display: flex;
+  gap: 16px;
   align-items: center;
   margin-left: auto;
   color: rgb(223, 223, 223);
@@ -257,6 +268,11 @@ a {
   display: none;
 }
 
+.done {
+
+  background-color: var(--secondary);
+}
+
 
 .alerta {
 
@@ -268,8 +284,9 @@ a {
   opacity: 0;
   margin-bottom: 32px;
   transition: opacity 0.6s ease-in-out;
-  background-color: rgb(211, 134, 134);
+  /* background-color: rgb(211, 134, 134); */
   overflow: hidden;
+
 
 }
 
@@ -277,7 +294,7 @@ a {
 
   display: flex;
   justify-content: right;
-  background-color: rgb(211, 134, 134);
+  background-color: var(--bg-alert);
   transition: opacity 0.6s ease-in-out;
   opacity: 1;
 
@@ -286,7 +303,9 @@ a {
 
 .alerta p {
 
-  color: white;
+  color: var(--app-black);
+  font-weight: bold;
+  letter-spacing: 1px;
   font-size: 14px;
 
 }
@@ -295,7 +314,7 @@ a {
 .alerta button {
 
   padding: 8px 32px;
-  border: solid 1px white;
+  border: solid 1px var(--app-grey);
   cursor: pointer;
   background: transparent;
   color: white;
@@ -308,14 +327,14 @@ a {
 
 .alerta button:hover {
 
-  background-color: white;
-  color: black;
+  background-color: var(--app-grey);
+  color: var(--app-black);
 
 }
 
 .alerta button:nth-last-child(1) {
 
-  background: rgba(255, 255, 255, 0.726);
+  background: #ffffffb9;
   color: black;
 
 }
@@ -324,6 +343,7 @@ a {
 
   background-color: white;
 }
+
 
 .back-to-top a {
   text-decoration: none;
@@ -342,6 +362,5 @@ a {
   border: 0.1rem solid #888888;
   opacity: .9;
   z-index: 10;
-  
-}
 
+}
