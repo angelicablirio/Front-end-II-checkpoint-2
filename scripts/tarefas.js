@@ -25,7 +25,7 @@ const menuToggle = (event) => {
 
 //Formata data
 let date = new Date()
-const dataFormatada =
+let dataFormatada =
   date.toLocaleDateString('pt-BR', {
     day:   '2-digit',
     month: '2-digit',
@@ -68,19 +68,19 @@ const mostraTarefas = () =>{
       .then(data =>{
         skeletonRef.classList.add('display')
         let tasks = data
-        for(let task of tasks){ //rever a formatação da data, acredito que tenha uma forma de melhorar
-
+        for(let task of tasks){
+          let dataFormatada = new Date(task.createdAt).toLocaleDateString('pt-BR', {
+            day:   '2-digit',
+            month: '2-digit',
+            year:  'numeric',
+          })
           if(!task.completed){
             containerTarefas.innerHTML += `
             <li class="tarefa">
             <div class="not-done" onclick = "marcarTarefa(${task.id})" ></div>
             <div class="descricao">
               <p class="nome">${task.description}</p>
-              <p class="timestamp">Criada em: ${new Date(task.createdAt).toLocaleDateString('pt-BR', {
-                day:   '2-digit',
-                month: '2-digit',
-                year:  'numeric',
-              })}</p>
+              <p class="timestamp">Criada em: ${dataFormatada}</p>
               <img class="bin-img" onclick = "removerTarefa(${task.id})"  src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
@@ -91,11 +91,7 @@ const mostraTarefas = () =>{
             <div class="not-done" onclick = "desmarcarTarefa(${task.id})" id="alterarStatus"></div>
             <div class="descricao">
               <p class="nome">${task.description}</p>
-              <p class="timestamp">Criada em: ${new Date(task.createdAt).toLocaleDateString('pt-BR', {
-                day:   '2-digit',
-                month: '2-digit',
-                year:  'numeric',
-              })}</p>
+              <p class="timestamp">Criada em: ${dataFormatada}</p>
               <img class="bin-img" onclick = "removerTarefa(${task.id})" src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
