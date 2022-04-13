@@ -127,7 +127,7 @@ a {
 
 /* Lista de tarefas ----------------------------------------------------------- */
 
-.tarefas-pendentes {
+.pending-tasks {
   display: flex;
   flex-direction: column;
   width: 70%;
@@ -220,7 +220,7 @@ a {
   z-index: 20;
 }
 
-.tarefas-terminadas {
+.finished-tasks {
   display: flex;
   flex-direction: column;
   width: 70%;
@@ -228,19 +228,19 @@ a {
   margin: 2em 15%;
 }
 
-.tarefas-terminadas i{
+.finished-tasks i{
   color: grey;
   background-color: rgb(228, 228, 228);
 }
-.tarefas-terminadas button{
+.finished-tasks button{
   margin-left: 10px;
 }
 
-.tarefas-terminadas .tarefa .descricao {
+.finished-tasks .tarefa .descricao {
   background-color: rgb(228, 228, 228);
 }
 
-.tarefas-terminadas .tarefa .descricao .nome {
+.finished-tasks .tarefa .descricao .nome {
   color: grey;
   text-decoration: line-through;
 }

@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link type="image/png" href="../assets/icons8-selecionado-16.png"
+  sizes="16x16" rel="icon">
 
   <!-- ----------------------------- sweet alert ----------------------------- -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -21,7 +23,6 @@
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 
   <title>To-Do App</title>
 </head>
@@ -53,14 +54,14 @@
 
   <form class="nova-tarefa">
     <div class="not-done"></div>
-    <input id="novaTarefa" type="text" placeholder="Nova tarefa">
-    <button type="submit" id="cadastrarTarefa">
+    <input id="newTarefa" type="text" placeholder="Nova tarefa">
+    <button type="submit" id="registerTarefa">
       <img src="../assets/plus.png" alt="Adicionar uma nova tarefa">
     </button>
   </form>
 
 
-  <ul class="tarefas-pendentes">
+  <ul class="pending-tasks">
     <div id="skeleton">
       <li class="tarefa" >
         <div class="not-done"></div>
@@ -90,7 +91,7 @@
     </div>
   </ul>
   <h2 class="titulo-terminadas">Tarefas terminadas</h2>
-  <ul class="tarefas-terminadas">
+  <ul class="finished-tasks">
 
   </ul>
 

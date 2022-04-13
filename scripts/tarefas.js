@@ -1,18 +1,15 @@
 const userNameRef = document.querySelector('#userName');
-const userFotoRef = document.querySelector('.user-image');
-const btnCadastrarTarefasRef = document.querySelector('#cadastrarTarefa');
-const inputNovaTarefaRef = document.querySelector('#novaTarefa');
-const containerTarefas = document.querySelector('.tarefas-pendentes');
+const userPhotoRef = document.querySelector('.user-image');
+const btnRegisterTaskRef = document.querySelector('#registerTarefa');
+const inputNewTaskRef = document.querySelector('#newTarefa');
+const containerTasksRef = document.querySelector('.pending-tasks');
 const skeletonRef = document.querySelector('#skeleton');
 const btnCloseAppRef = document.querySelector('#closeApp');
-const alertaShowRef = document.querySelector('#alertShow');
+const alertShowRef = document.querySelector('#alertShow');
 const btnConfirmLogout = document.querySelector('#confirmLogout');
 const btnCancelLogout = document.querySelector('#cancelLogout');
-const containerTarefasTerminadasRef = document.querySelector('.tarefas-terminadas');
-const alterarStatusRef = document.querySelector('#alterarStatus');
-const menuToggleRef = document.querySelector('#menu-toggle')
-
-let btnsRemoverTarefaRef;
+const containerFinishedTasksRef = document.querySelector('.finished-tasks');
+const menuToggleRef = document.querySelector('#menu-toggle');
 
 // menu hamburguer
 const menuToggle = (event) => {
@@ -25,7 +22,7 @@ const menuToggle = (event) => {
 
 //Formata data
 let date = new Date()
-let dataFormatada =
+let formatDate =
   date.toLocaleDateString('pt-BR', {
     day:   '2-digit',
     month: '2-digit',
@@ -33,8 +30,7 @@ let dataFormatada =
   });
 
 //Insere o nome do usuário na tela
-const mostraNomeUsuário = () =>{
-
+const showUserName = () =>{
   let requestHeaders = {
     headers: {
       "Content-Type": 'application/json',
@@ -47,7 +43,7 @@ const mostraNomeUsuário = () =>{
       response.json()
       .then(data =>{
         userNameRef.innerHTML = `${data.firstName} ${data.lastName}`;
-        userFotoRef.src = '../assets/foto-login.png'
+        userPhotoRef.src = '../assets/foto-login.png'
     });
   });
 }
@@ -66,32 +62,40 @@ const mostraTarefas = () =>{
     .then(response =>{
       response.json()
       .then(data =>{
-        skeletonRef.classList.add('display')
+        if(data == '') {
+          skeletonRef.classList.remove('display')
+        }
+        else {
+          skeletonRef.classList.add('display')
+        }
+
         let tasks = data
+
         for(let task of tasks){
-          let dataFormatada = new Date(task.createdAt).toLocaleDateString('pt-BR', {
+          let formatDate = new Date(task.createdAt).toLocaleDateString('pt-BR', {
             day:   '2-digit',
             month: '2-digit',
             year:  'numeric',
           })
+
           if(!task.completed){
-            containerTarefas.innerHTML += `
+            containerTasksRef.innerHTML += `
             <li class="tarefa">
-            <div class="not-done" onclick = "marcarTarefa(${task.id})" ></div>
+            <div class="not-done" onclick = "updateTasks(${task.id, true})" ></div>
             <div class="descricao">
               <p class="nome">${task.description}</p>
-              <p class="timestamp">Criada em: ${dataFormatada}</p>
+              <p class="timestamp">Criada em: ${formatDate}</p>
               <img class="bin-img" onclick = "removerTarefa(${task.id})"  src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
             `
           }else {
-            containerTarefasTerminadasRef.innerHTML += `
+            containerFinishedTasksRef.innerHTML += `
             <li class="tarefa">
-            <div class="not-done" onclick = "desmarcarTarefa(${task.id})" id="alterarStatus"></div>
+            <div class="not-done" onclick = "updateTasks(${task.id, false})" id="alterarStatus"></div>
             <div class="descricao">
               <p class="nome">${task.description}</p>
-              <p class="timestamp">Criada em: ${dataFormatada}</p>
+              <p class="timestamp">Criada em: ${formatDate}</p>
               <img class="bin-img" onclick = "removerTarefa(${task.id})" src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
@@ -102,12 +106,10 @@ const mostraTarefas = () =>{
   });
 }
 
-
-
 //Posta as novas tarefas
-const postNovaTarefa = () => {
+const postNewTask = () => {
   let tasksRegister = {
-    description: inputNovaTarefaRef.value,
+    description: inputNewTaskRef.value,
     completed: false,
   }
 
@@ -125,12 +127,12 @@ const postNovaTarefa = () => {
       .then(response => {
         response.json()
         .then(data =>{
-            containerTarefas.innerHTML += `
+          containerTasksRef.innerHTML += `
             <li class="tarefa">
             <div class="not-done"></div>
             <div class="descricao">
               <p class="nome">${data.description}</p>
-              <p class="timestamp">Criada em: ${dataFormatada}</p>
+              <p class="timestamp">Criada em: ${formatDate}</p>
               <img class="bin-img"src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
@@ -145,10 +147,10 @@ const postNovaTarefa = () => {
 
 //Atualiza status da tarefa
 
-const marcarTarefa = (id) => {
+const updateTasks = (id, completed) => { //Rever função*******
   let requestConfig = {
     method: 'PUT',
-    body: JSON.stringify({ completed:true }),
+    body: JSON.stringify({ completed: completed }),
     headers: {
       "Content-Type":'application/json',
       "Authorization": localStorage.getItem('token')
@@ -164,23 +166,23 @@ const marcarTarefa = (id) => {
 }
 
 //Desmarcar tarefa
-const desmarcarTarefa = (id) => {
-  let requestConfig = {
-    method: 'PUT',
-    body: JSON.stringify({ completed:false }),
-    headers: {
-      "Content-Type":'application/json',
-      "Authorization": localStorage.getItem('token')
-    }
-  }
+// const desmarcarTarefa = (id) => {
+//   let requestConfig = {
+//     method: 'PUT',
+//     body: JSON.stringify({ completed:false }),
+//     headers: {
+//       "Content-Type":'application/json',
+//       "Authorization": localStorage.getItem('token')
+//     }
+//   }
 
-  fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
-    .then(response => {
-      if(response.ok){
-        renderizaApp()
-    }
-  })
-}
+//   fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
+//     .then(response => {
+//       if(response.ok){
+//         renderizaApp()
+//     }
+//   })
+// }
 
 //Renderiza app
 const renderizaApp = () =>{
@@ -211,7 +213,7 @@ const removerTarefa = (id) => {
 const logoutApp = () => {
 
   if(btnCloseAppRef.click){
-    alertaShowRef.classList.add('alertaShow')
+    alertShowRef.classList.add('alertaShow')
   }
 }
 
@@ -229,22 +231,20 @@ const cancelLogout = () => {
 
   if(btnCancelLogout.click){
 
-    alertaShowRef.classList.remove('alertaShow')
+    alertShowRef.classList.remove('alertaShow')
   }
 }
 
 
 
 //Invoca as funções
-mostraNomeUsuário();
+showUserName();
 mostraTarefas();
 menuToggleRef.addEventListener('click', menuToggle)
-btnCadastrarTarefasRef.addEventListener('click', e =>{
+btnRegisterTaskRef.addEventListener('click', e =>{
   e.preventDefault()
-  postNovaTarefa()
+  postNewTask()
 });
-
 btnCloseAppRef.addEventListener('click', logoutApp);
-
 btnConfirmLogout.addEventListener('click', confirmLogout );
 btnCancelLogout.addEventListener('click', cancelLogout);
