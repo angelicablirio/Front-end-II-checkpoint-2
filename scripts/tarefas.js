@@ -81,7 +81,7 @@ const mostraTarefas = () =>{
           if(!task.completed){
             containerTasksRef.innerHTML += `
             <li class="task">
-            <div class="not-done" onclick = "updateTasks(${task.id, true})" ></div>
+            <div class="not-done" onclick = "updateTasks(${task.id}, true)" ></div>
             <div class="description">
               <p class="name">${task.description}</p>
               <p class="timestamp">Criada em: ${formatDate}</p>
@@ -92,7 +92,7 @@ const mostraTarefas = () =>{
           }else {
             containerFinishedTasksRef.innerHTML += `
             <li class="task">
-            <div class="not-done" onclick = "updateTasks(${task.id, false})" id="alterarStatus"></div>
+            <div class="not-done" onclick = "updateTasks(${task.id}, false)" id="alterarStatus"></div>
             <div class="description">
               <p class="name">${task.description}</p>
               <p class="timestamp">Criada em: ${formatDate}</p>
