@@ -1,71 +1,71 @@
 //Referências
-const inputNomeRef = document.querySelector('#inputNome');
-const inputSobrenomeRef = document.querySelector('#inputSobrenome');
+const inputNameRef = document.querySelector('#inputName');
+const inputLastNameRef = document.querySelector('#inputLastName');
 const inputEmailRef = document.querySelector('#inputEmail');
-const inputSenhaRef = document.querySelector('#inputSenha');
-const inputSenhaConfirmRef = document.querySelector('#inputSenhaConfirm');
-const inputBtnCriarContaRef = document.querySelector('#btnCriarConta');
-const inputMsgErroNomeRef = document.querySelector('#msgErroNome');
-const inputMsgErroSenhaRef = document.querySelector('#msgErroSenha');
-const inputMsgErroConfirmSenhaRef = document.querySelector('#msgErroConfirmSenha')
-const inputMsgErroSobrenomeRef = document.querySelector('#msgErroSobrenome');
-const inputMsgErroEmailRef = document.querySelector('#msgErroEmail');
+const inputPasswordRef = document.querySelector('#inputPassword');
+const inputPasswordConfirmRef = document.querySelector('#inputPasswordConfirm');
+const inputBtnCreateAccountRef = document.querySelector('#btnCriarConta');
+const inputMsgErrorNameRef = document.querySelector('#msgErrorName');
+const inputMsgErrorPasswordRef = document.querySelector('#msgErroPassword');
+const inputMsgErrorConfirmPasswordRef = document.querySelector('#msgErrorConfirmPassword')
+const inputMsgErrorLastNameRef = document.querySelector('#msgErrorLastName');
+const inputMsgErrorEmailRef = document.querySelector('#msgErrorEmail');
 const linkLoginRef = document.querySelector('a')
-const inputShowSenhaRef = document.querySelector('#showPassword')
-const checkboxSenhaRef = document.querySelector('#checkboxShow')
+const inputShowPasswordRef = document.querySelector('#showPassword')
+const checkboxPasswordRef = document.querySelector('#checkboxShow')
 const alertIdentUserRef = document.querySelector('#alertUser')
 
 //Valida nome
-const validaNome = () => {
-  if (inputNomeRef.checkValidity()) {
-    inputMsgErroNomeRef.classList.remove('show');
+const validateName = () => {
+  if (inputNameRef.checkValidity()) {
+    inputMsgErrorNameRef.classList.remove('show');
     return true;
   } else {
-    inputMsgErroNomeRef.classList.add('show');
+    inputMsgErrorNameRef.classList.add('show');
     return false;
   }
 }
 
 //Valida apelido
-const validaSobrenome = () => {
-  if (inputSobrenomeRef.checkValidity()) {
-    inputMsgErroSobrenomeRef.classList.remove('show');
+const validateLastName = () => {
+  if (inputLastNameRef.checkValidity()) {
+    inputMsgErrorLastNameRef.classList.remove('show');
     return true;
   } else {
-    inputMsgErroSobrenomeRef.classList.add('show');
+    inputMsgErrorLastNameRef.classList.add('show');
     return false;
   }
 }
 
 //Valida email
-const validaEmail = () => {
+const validateEmail = () => {
   if (inputEmailRef.checkValidity()) {
-    inputMsgErroEmailRef.classList.remove('show');
+    inputMsgErrorEmailRef.classList.remove('show');
     return true;
   } else {
-    inputMsgErroEmailRef.classList.add('show');
+    inputMsgErrorEmailRef.classList.add('show');
     return false;
   }
 }
 
 //Valida senha
-const validaSenha = () => {
-  if (inputSenhaRef.checkValidity()) {
-    inputMsgErroSenhaRef.classList.remove('show');
+const validatePassword = () => {
+  if (inputPasswordRef.checkValidity()) {
+    inputMsgErrorPasswordRef.classList.remove('show');
     return true;
   } else {
-    inputMsgErroSenhaRef.classList.add('show');
+    inputMsgErrorPasswordRef.classList.add('show');
     return false;
   }
 }
 
 //Confirma senha
-const confirmaSenha = () => {
-  if(inputSenhaRef.value !== inputSenhaConfirmRef.value) {
-    inputMsgErroConfirmSenhaRef.classList.add('show');
+const confirmPassword = () => {
+  if(inputPasswordRef.value !== inputPasswordConfirmRef.value) {
+    inputMsgErrorConfirmPasswordRef.classList.add('show');
     return false;
   } else {
-    inputMsgErroConfirmSenhaRef.classList.remove('show');
+    inputMsgErrorConfirmPasswordRef.classList.remove('show');
     return true;
   }
 }
@@ -73,48 +73,48 @@ const confirmaSenha = () => {
 // Habilita campo com o checkbox para visualizar a senha
 const showFieldCheckbox = () => {
 
-  if (inputSenhaRef.value.length >= 2) {
-    checkboxSenhaRef.classList.add('showSenha')
+  if (inputPasswordRef.value.length >= 2) {
+    checkboxPasswordRef.classList.add('showSenha')
   }
   else {
-    checkboxSenhaRef.classList.remove('showSenha')
+    checkboxPasswordRef.classList.remove('showSenha')
   }
 }
 
 // Checkbox para visualizar a senha
-const showSenha = () => {
+const showPassword = () => {
 
-  if(inputShowSenhaRef.checked){
-    inputSenhaRef.type = inputSenhaRef.type == 'text' ? 'password' : 'text'
-    inputSenhaConfirmRef.type = inputSenhaConfirmRef.type == 'text' ? 'password' : 'text'
+  if(inputShowPasswordRef.checked){
+    inputPasswordRef.type = inputPasswordRef.type == 'text' ? 'password' : 'text'
+    inputPasswordConfirmRef.type = inputPasswordConfirmRef.type == 'text' ? 'password' : 'text'
   }
   else {
-    inputSenhaRef.type = inputSenhaRef.type == 'password' ? 'text' : 'password'
-    inputSenhaConfirmRef.type = inputSenhaConfirmRef.type == 'password' ? 'text' : 'password'
+    inputPasswordRef.type = inputPasswordRef.type == 'password' ? 'text' : 'password'
+    inputPasswordConfirmRef.type = inputPasswordConfirmRef.type == 'password' ? 'text' : 'password'
   }
 }
 
 //Valida todos os campos do formulário
-const validaFormCriarConta = () => {
-  return validaNome() &&
-  validaSobrenome() &&
-  validaEmail() &&
-  validaSenha() &&
-  confirmaSenha()
+const validateFormCreateAccount = () => {
+  return validateName() &&
+  validateLastName() &&
+  validateEmail() &&
+  validatePassword() &&
+  confirmPassword()
 }
 
 //Habilita o botão de criar conta
-const habilitaBtnCriarConta = () => {
-  inputBtnCriarContaRef.disabled = !validaFormCriarConta();
+const enableBtnCreateAccount = () => {
+  inputBtnCreateAccountRef.disabled = !validateFormCreateAccount();
 }
 
 //Cria a conta do usuário
-const criarLoginUsuario = () =>{
+const createLoginUser = () =>{
   let user = {
-    firstName: inputNomeRef.value,
-    lastName: inputSobrenomeRef.value,
+    firstName: inputNameRef.value,
+    lastName: inputLastNameRef.value,
     email: inputEmailRef.value,
-    password: inputSenhaRef.value
+    password: inputPasswordRef.value
   }
 
   let requestHeaders = {
@@ -145,21 +145,21 @@ const criarLoginUsuario = () =>{
 }
 
 //Acessar a página do login caso já tenha conta
-const acessarPagLogin = () => {
+const accessLoginPage = () => {
   window.location.assign("../index.html")
 }
 
 //Chama as funções
-inputNomeRef.addEventListener('keyup', habilitaBtnCriarConta);
-inputSobrenomeRef.addEventListener('keyup', habilitaBtnCriarConta);
-inputEmailRef.addEventListener('keyup', habilitaBtnCriarConta);
-inputSenhaRef.addEventListener('keyup', validaSenha);
-inputShowSenhaRef.addEventListener('change', showSenha)
-inputSenhaRef.addEventListener('keydown', showFieldCheckbox)
-inputSenhaConfirmRef.addEventListener('keyup', habilitaBtnCriarConta);
-linkLoginRef.addEventListener('click', acessarPagLogin)
-inputBtnCriarContaRef.addEventListener('click', e => {
+inputNameRef.addEventListener('keyup', enableBtnCreateAccount);
+inputLastNameRef.addEventListener('keyup', enableBtnCreateAccount);
+inputEmailRef.addEventListener('keyup', enableBtnCreateAccount);
+inputPasswordRef.addEventListener('keyup', validatePassword);
+inputShowPasswordRef.addEventListener('change', showPassword)
+inputPasswordRef.addEventListener('keydown', showFieldCheckbox)
+inputPasswordConfirmRef.addEventListener('keyup', enableBtnCreateAccount);
+linkLoginRef.addEventListener('click', accessLoginPage)
+inputBtnCreateAccountRef.addEventListener('click', e => {
   e.preventDefault();
-  criarLoginUsuario();
+  createLoginUser();
 
 });

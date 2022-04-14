@@ -62,7 +62,7 @@ small.show{
   display: block;
 }
 
-.checkboxShowSenha {
+.checkboxShowPassword {
 
   display: none;
   align-items: center;
@@ -71,7 +71,7 @@ small.show{
 
 }
 
-.showSenha {
+.showPassword {
 
   display: flex;
 

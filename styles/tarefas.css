@@ -63,7 +63,7 @@ a {
 
 /* Nova tarefa ----------------------------------------------------------- */
 
-.nova-tarefa {
+.new-task {
   position: relative;
   display: flex;
   align-items: center;
@@ -76,7 +76,7 @@ a {
   z-index: 20;
 }
 
-.nova-tarefa input[type=text] {
+.new-task input[type=text] {
   border: none;
   flex: 1;
   border-bottom: 1px solid lightgrey;
@@ -85,17 +85,17 @@ a {
   font-size: 1.1em;
 }
 
-.nova-tarefa input:focus {
+.new-task input:focus {
   outline: none;
   border-bottom: 1px solid grey;
 }
 
-.nova-tarefa input::placeholder {
+.new-task input::placeholder {
   color: rgb(197, 197, 197);
   text-indent: .2em;
 }
 
-.nova-tarefa button {
+.new-task button {
   height: 2em;
   width: 2em;
   background-color: transparent;
@@ -105,11 +105,11 @@ a {
   cursor: pointer;
 }
 
-.nova-tarefa button:hover {
+.new-task button:hover {
   opacity: 1;
 }
 
-.nova-tarefa button img {
+.new-task button img {
   height: 100%;
   width: 100%;
 }
@@ -135,13 +135,13 @@ a {
   margin: 2em 15%;
 }
 
-.tarefa {
+.task {
   display: flex;
   align-items: center;
   margin-bottom: 1.5em;
 }
 
-.tarefa .not-done {
+.task .not-done {
   position: relative;
   height: 1.5em;
   width: 1.5em;
@@ -152,11 +152,11 @@ a {
   transition: background-color 200ms linear;
 }
 
-.tarefa .not-done:hover {
+.task .not-done:hover {
   background-color: var(--secondary);
 }
 
-.tarefa:first-child .not-done::before {
+.task:first-child .not-done::before {
   content: '';
   position: absolute;
   bottom: 100%;
@@ -167,7 +167,7 @@ a {
   background-color: var(--secondary);
 }
 
-.tarefa:not(:last-child) .not-done::after {
+.task:not(:last-child) .not-done::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -178,7 +178,7 @@ a {
   background-color: var(--secondary);
 }
 
-.tarefa .descricao {
+.task .description {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -188,16 +188,16 @@ a {
   box-shadow: 2px 2px 5px lightgrey;
 }
 
-.tarefa .nome {
+.task .name {
   color: rgb(95, 95, 95);
 }
 
-.tarefa .timestamp {
+.task .timestamp {
   font-size: .9em;
   color: rgb(134, 134, 134);
 }
 
-.tarefa .bin-img{
+.task .bin-img{
   height: 1.2em;
   width: 1.2em;
   cursor: pointer;
@@ -205,7 +205,7 @@ a {
 
 /* Tarefas terminadas ----------------------------------------------------------- */
 
-.titulo-terminadas {
+.finished-title {
   position: relative;
   width: 8em;
   text-align: center;
@@ -274,7 +274,7 @@ a {
 }
 
 
-.alerta {
+.alert {
 
   display: flex;
   padding: 24px 48px;
@@ -290,7 +290,7 @@ a {
 
 }
 
-.alertaShow {
+.alertShow {
 
   display: flex;
   justify-content: right;
@@ -301,7 +301,7 @@ a {
 
 }
 
-.alerta p {
+.alert p {
 
   color: var(--app-black);
   font-weight: bold;
@@ -311,7 +311,7 @@ a {
 }
 
 
-.alerta button {
+.alert button {
 
   padding: 8px 32px;
   border: solid 1px var(--app-grey);
@@ -325,21 +325,21 @@ a {
   transition: 0.6s;
 }
 
-.alerta button:hover {
+.alert button:hover {
 
   background-color: var(--app-grey);
   color: var(--app-black);
 
 }
 
-.alerta button:nth-last-child(1) {
+.alert button:nth-last-child(1) {
 
   background: #ffffffb9;
   color: black;
 
 }
 
-.alerta button:nth-last-child(1):hover {
+.alert button:nth-last-child(1):hover {
 
   background-color: white;
 }

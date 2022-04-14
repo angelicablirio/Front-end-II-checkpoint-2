@@ -1,7 +1,7 @@
 const userNameRef = document.querySelector('#userName');
 const userPhotoRef = document.querySelector('.user-image');
 const btnRegisterTaskRef = document.querySelector('#registerTarefa');
-const inputNewTaskRef = document.querySelector('#newTarefa');
+const inputNewTaskRef = document.querySelector('#newTask');
 const containerTasksRef = document.querySelector('.pending-tasks');
 const skeletonRef = document.querySelector('#skeleton');
 const btnCloseAppRef = document.querySelector('#closeApp');
@@ -80,10 +80,10 @@ const mostraTarefas = () =>{
 
           if(!task.completed){
             containerTasksRef.innerHTML += `
-            <li class="tarefa">
+            <li class="task">
             <div class="not-done" onclick = "updateTasks(${task.id, true})" ></div>
-            <div class="descricao">
-              <p class="nome">${task.description}</p>
+            <div class="description">
+              <p class="name">${task.description}</p>
               <p class="timestamp">Criada em: ${formatDate}</p>
               <img class="bin-img" onclick = "removerTarefa(${task.id})"  src="../assets/bin.png" alt="Remover tarefa">
             </div>
@@ -91,10 +91,10 @@ const mostraTarefas = () =>{
             `
           }else {
             containerFinishedTasksRef.innerHTML += `
-            <li class="tarefa">
+            <li class="task">
             <div class="not-done" onclick = "updateTasks(${task.id, false})" id="alterarStatus"></div>
-            <div class="descricao">
-              <p class="nome">${task.description}</p>
+            <div class="description">
+              <p class="name">${task.description}</p>
               <p class="timestamp">Criada em: ${formatDate}</p>
               <img class="bin-img" onclick = "removerTarefa(${task.id})" src="../assets/bin.png" alt="Remover tarefa">
             </div>
@@ -128,10 +128,10 @@ const postNewTask = () => {
         response.json()
         .then(data =>{
           containerTasksRef.innerHTML += `
-            <li class="tarefa">
+            <li class="task">
             <div class="not-done"></div>
-            <div class="descricao">
-              <p class="nome">${data.description}</p>
+            <div class="description">
+              <p class="name">${data.description}</p>
               <p class="timestamp">Criada em: ${formatDate}</p>
               <img class="bin-img"src="../assets/bin.png" alt="Remover tarefa">
             </div>
@@ -213,7 +213,7 @@ const removerTarefa = (id) => {
 const logoutApp = () => {
 
   if(btnCloseAppRef.click){
-    alertShowRef.classList.add('alertaShow')
+    alertShowRef.classList.add('alertShow')
   }
 }
 
@@ -231,11 +231,9 @@ const cancelLogout = () => {
 
   if(btnCancelLogout.click){
 
-    alertShowRef.classList.remove('alertaShow')
+    alertShowRef.classList.remove('alertShow')
   }
 }
-
-
 
 //Invoca as funções
 showUserName();
@@ -246,5 +244,5 @@ btnRegisterTaskRef.addEventListener('click', e =>{
   postNewTask()
 });
 btnCloseAppRef.addEventListener('click', logoutApp);
-btnConfirmLogout.addEventListener('click', confirmLogout );
+btnConfirmLogout.addEventListener('click', confirmLogout);
 btnCancelLogout.addEventListener('click', cancelLogout);

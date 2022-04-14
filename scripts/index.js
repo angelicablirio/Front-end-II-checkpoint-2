@@ -1,77 +1,76 @@
 const inputEmailRef = document.querySelector('#inputEmail');
-const inputSenhaRef = document.querySelector('#inputPassword');
-const inputBtnAcessarRef = document.querySelector('#btnAcessar');
-const inputMsgErroEmailRef = document.querySelector('.msgErroEmail');
-const inputMsgErroSenhaRef = document.querySelector('.msgErroSenha');
-const linkCriarContaRef = document.querySelector('a')
-const inputShowSenhaRef = document.querySelector('#showPassword')
-const checkboxSenhaRef = document.querySelector('#checkboxShow')
-const alertIdentUserRef = document.querySelector('#alertUser')
+const inputPasswordRef = document.querySelector('#inputPassword');
+const inputBtnAccessRef = document.querySelector('#btnAccess');
+const inputMsgErrorEmailRef = document.querySelector('.msgErrorEmail');
+const inputMsgErrorPasswordRef = document.querySelector('.msgErrorPassword');
+const linkCreateAccountRef = document.querySelector('a');
+const inputShowPasswordRef = document.querySelector('#showPassword');
+const checkboxPasswordRef = document.querySelector('#checkboxShow');
+const alertIdentUserRef = document.querySelector('#alertUser');
 
 //Valida email
-const validaEmail = () => {
+const validateEmail = () => {
   if (inputEmailRef.checkValidity()) {
-    inputMsgErroEmailRef.classList.remove('show')
+    inputMsgErrorEmailRef.classList.remove('show')
     alertIdentUserRef.classList.remove('alertIdentUserShow')
     return true;
   } else {
-    inputMsgErroEmailRef.classList.add('show')
+    inputMsgErrorEmailRef.classList.add('show')
     return false
   }
 }
 
 //Valida senha
-const validaSenha = () => {
-  if (inputSenhaRef.checkValidity()) {
-    inputMsgErroSenhaRef.classList.remove('show')
+const validatePassword = () => {
+  if (inputPasswordRef.checkValidity()) {
+    inputMsgErrorPasswordRef.classList.remove('show')
     return true;
   } else {
-    inputMsgErroSenhaRef.classList.add('show')
+    inputMsgErrorPasswordRef.classList.add('show')
     return false
   }
 }
 
-// Habilita campo com o chechbox para visualizar a senha
+// Habilita campo com o checkbox para visualizar a senha
 const showFieldCheckbox = () => {
 
-  if (inputSenhaRef.value.length >= 2) {
-    // console.log('fdgjgj')
-    checkboxSenhaRef.classList.add('showSenha')
+  if (inputPasswordRef.value.length >= 2) {
+    checkboxPasswordRef.classList.add('showPassword')
 
   }
   else {
-    checkboxSenhaRef.classList.remove('showSenha')
+    checkboxPasswordRef.classList.remove('showPassword')
   }
 }
 
 // Checkbox para visualizar a senha
-const showSenha = () => {
+const showPassword = () => {
 
-  if (inputShowSenhaRef.checked) {
-    inputSenhaRef.type = inputSenhaRef.type == 'text' ? 'password' : 'text'
+  if (inputShowPasswordRef.checked) {
+    inputPasswordRef.type = inputPasswordRef.type == 'text' ? 'password' : 'text'
   }
   else {
-    inputSenhaRef.type = inputSenhaRef.type == 'password' ? 'text' : 'password'
+    inputPasswordRef.type = inputPasswordRef.type == 'password' ? 'text' : 'password'
   }
 }
 
 //Valida todos os campos do formulário
-const validaForm = () => {
-  return validaEmail() &&
-  validaSenha()
+const validateForm = () => {
+  return validateEmail() &&
+  validatePassword()
 }
 
 //Habilita o botão acessar
-const habilitaBtnAcessar = () =>{
-  inputBtnAcessarRef.disabled = !validaForm();
+const enableBtnAccess = () =>{
+  inputBtnAccessRef.disabled = !validateForm();
 }
 
 //Faz o login do usuário
-const loginUsuario = () =>{
+const loginUser = () =>{
 
   let usuarioLogin = {
     email: inputEmailRef.value,
-    password: inputSenhaRef.value
+    password: inputPasswordRef.value
   }
 
   let requestHeaders = {
@@ -93,27 +92,25 @@ const loginUsuario = () =>{
         localStorage.setItem('token', data.jwt)
         window.location.assign('./pages/tarefas.html')
     })
-
   }
   else {
     alertIdentUserRef.classList.add('alertIdentUserShow')
 
   }
   })
-
 }
 
 //Acessar a página do para criar conta caso não tenha
-const acessarPagCriarConta = () => {
+const acessCreateAccountPage = () => {
   window.location.assign("./pages/signup.html");
 }
 
-inputEmailRef.addEventListener('keyup', habilitaBtnAcessar);
-inputSenhaRef.addEventListener('keyup', habilitaBtnAcessar);
-inputSenhaRef.addEventListener('keydown', showFieldCheckbox);
-inputBtnAcessarRef.addEventListener('click', e => {
+inputEmailRef.addEventListener('keyup', enableBtnAccess);
+inputPasswordRef.addEventListener('keyup', enableBtnAccess);
+inputPasswordRef.addEventListener('keydown', showFieldCheckbox);
+inputBtnAccessRef.addEventListener('click', e => {
   e.preventDefault();
-  loginUsuario();
+  loginUser();
 });
-linkCriarContaRef.addEventListener('click', acessarPagCriarConta);
-inputShowSenhaRef.addEventListener('change', showSenha);
+linkCreateAccountRef.addEventListener('click', acessCreateAccountPage);
+inputShowPasswordRef.addEventListener('change', showPassword);
