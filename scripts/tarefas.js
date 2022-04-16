@@ -15,8 +15,9 @@ const menuToggleRef = document.querySelector('#menu-toggle');
 const menuToggle = (event) => {
 
   event.preventDefault()
-  const mostrarMenu = document.querySelector('#showMenu')
-  mostrarMenu.classList.toggle('menuAtivo')
+  const showMenuRef = document.querySelector('#showMenu')
+  showMenuRef.classList.toggle('activeMenu')
+  menuToggleRef.classList.toggle('active')
 
 }
 
