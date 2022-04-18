@@ -243,16 +243,16 @@ a {
   margin-left: 10px;
 }
 
-.finished-tasks .tarefa .descricao {
+.finished-tasks .task .description {
   background-color: rgb(228, 228, 228);
 }
 
-.finished-tasks .tarefa .descricao .nome {
+.finished-tasks .task .description .name {
   color: grey;
   text-decoration: line-through;
 }
 
-#skeleton .descricao{
+#skeleton .description{
   background-color: rgb(189, 189, 189);
 }
 #skeleton p{
