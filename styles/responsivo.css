@@ -43,7 +43,7 @@
     display: none;
   }
 
-  .ingressar{
+  .join{
 
     margin-bottom: 64px;
 
@@ -124,7 +124,7 @@
 
   }
 
-  .menuAtivo {
+  .active-menu {
 
     opacity: 1;
     display: flex;
