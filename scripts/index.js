@@ -8,6 +8,7 @@ const inputShowPasswordRef = document.querySelector('#showPassword');
 const checkboxPasswordRef = document.querySelector('#checkboxShow');
 const alertIdentUserRef = document.querySelector('#alertUser');
 
+
 //Valida email
 const validateEmail = () => {
   if (inputEmailRef.checkValidity()) {
@@ -90,7 +91,7 @@ const loginUser = () =>{
       response.json()
       .then(data =>{
         localStorage.setItem('token', data.jwt)
-        window.location.assign('./pages/tarefas.html')
+        setTimeout(()=>{window.location.assign('./pages/tarefas.html')},500)
     })
   }
   else {
@@ -110,6 +111,7 @@ inputPasswordRef.addEventListener('keyup', enableBtnAccess);
 inputPasswordRef.addEventListener('keydown', showFieldCheckbox);
 inputBtnAccessRef.addEventListener('click', e => {
   e.preventDefault();
+  showSpinner();
   loginUser();
 });
 linkCreateAccountRef.addEventListener('click', acessCreateAccountPage);

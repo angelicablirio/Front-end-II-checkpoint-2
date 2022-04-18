@@ -1,4 +1,7 @@
 @import url('./common.css');
+
+
+
 header {
   display: flex;
   position: relative;
@@ -74,7 +77,6 @@ a {
   box-shadow: 2px 2px 10px lightgrey;
   border-radius: .2em;
   z-index: 20;
-  box-sizing: border-box;
 }
 
 .new-task input[type=text] {
@@ -111,7 +113,6 @@ a {
 }
 
 .new-task button img {
-  height: 100%;
   width: 100%;
 }
 
@@ -128,13 +129,18 @@ a {
 
 /* Lista de tarefas ----------------------------------------------------------- */
 
+.msg-notasks{
+  margin: 20px auto;
+  text-align: center;
+  color: #888888;
+}
+
 .pending-tasks {
   display: flex;
   flex-direction: column;
   width: 70%;
   list-style: none;
   margin: 2em 15%;
-  box-sizing: border-box;
 }
 
 .task {
@@ -200,8 +206,7 @@ a {
 }
 
 .task .bin-img{
-  height: 1.2em;
-  width: 1.2em;
+  width: 1em;
   cursor: pointer;
 }
 
@@ -220,7 +225,6 @@ a {
   font-size: 1.1em;
   margin-left: calc(15% - 4em);
   z-index: 20;
-  box-sizing: border-box;
 }
 
 .finished-tasks {
@@ -229,8 +233,6 @@ a {
   width: 70%;
   list-style: none;
   margin: 2em 15%;
-  box-sizing: border-box;
-  z-index: 10;
 }
 
 .finished-tasks i{
@@ -272,6 +274,9 @@ a {
 #skeleton.display{
   display: none;
 }
+.msg-notasks.display{
+  display: none;
+}
 
 .done {
 
@@ -291,7 +296,6 @@ a {
   transition: opacity 0.6s ease-in-out;
   /* background-color: rgb(211, 134, 134); */
   overflow: hidden;
-  box-sizing: border-box;
 
 
 }
@@ -357,8 +361,8 @@ a {
   bottom: 2rem;
   right: 2rem;
   background: #f7f7f7;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -367,6 +371,6 @@ a {
   transform: rotate(-90deg);
   border: 0.1rem solid #888888;
   opacity: .9;
-  z-index: 0;
-
+  z-index: 10;
 }
+

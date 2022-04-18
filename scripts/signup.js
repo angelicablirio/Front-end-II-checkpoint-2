@@ -134,7 +134,7 @@ const createLoginUser = () =>{
 
       .then(requestConfig =>{
         console.log(requestConfig)
-        window.location.assign('../index.html')
+        setTimeout(()=>{window.location.assign('../index.html')},500)
       });
       }
       else {
@@ -160,6 +160,7 @@ inputPasswordConfirmRef.addEventListener('keyup', enableBtnCreateAccount);
 linkLoginRef.addEventListener('click', accessLoginPage)
 inputBtnCreateAccountRef.addEventListener('click', e => {
   e.preventDefault();
+  showSpinner();
   createLoginUser();
 
 });

@@ -10,14 +10,14 @@ const btnConfirmLogout = document.querySelector('#confirmLogout');
 const btnCancelLogout = document.querySelector('#cancelLogout');
 const containerFinishedTasksRef = document.querySelector('.finished-tasks');
 const menuToggleRef = document.querySelector('#menu-toggle');
+const msgNoTasksRef = document.querySelector('.msg-notasks');
 
 // menu hamburguer
 const menuToggle = (event) => {
 
   event.preventDefault()
-  const showMenuRef = document.querySelector('#showMenu')
-  showMenuRef.classList.toggle('activeMenu')
-  menuToggleRef.classList.toggle('active')
+  const mostrarMenu = document.querySelector('#showMenu')
+  mostrarMenu.classList.toggle('menuAtivo')
 
 }
 
@@ -64,9 +64,11 @@ const mostraTarefas = () =>{
       response.json()
       .then(data =>{
         if(data == '') {
-          skeletonRef.classList.remove('display')
+          msgNoTasksRef.classList.remove('display')
+          skeletonRef.classList.add('display')
         }
         else {
+          msgNoTasksRef.classList.add('display')
           skeletonRef.classList.add('display')
         }
 
