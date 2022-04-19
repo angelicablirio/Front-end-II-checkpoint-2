@@ -33,29 +33,29 @@
       <label>
         Nome:
         <input class="inputLogin" type="text" id="inputName" minlength="3" required>
-        <small id="msgErrorName">O campo deve conter no mínimo 3 letras.</small>
+        <small class="msgErrorName">O campo deve conter no mínimo 3 letras.</small>
       </label>
       <label>
         Sobrenome:
         <input class="inputLogin" type="text" id="inputLastName" minlength="2" required>
-        <small id="msgErrorLastName">O campo deve conter no mínimo 2 letras.</small>
+        <small class="msgErrorLastName">O campo deve conter no mínimo 2 letras.</small>
       </label>
       <label>
         Email:
         <input class="inputLogin" type="email" id="inputEmail" required>
-        <small id="msgErrorEmail">O campo email é obrigatório.</small>
+        <small class="msgErrorEmail">O campo email é obrigatório.</small>
       </label>
       <label>
         Senha:
         <input class="inputLogin" type="password" id="inputPassword" minlength="6" required>
-        <small id="msgErroPassword">O campo senha é obrigatório e precisa ter no mínimo 6 dígitos.</small>
+        <small class="msgErrorPassword">O campo senha é obrigatório e precisa ter no mínimo 6 dígitos.</small>
       </label>
       <label>
         Repetir senha:
         <input class="inputLogin" type="password" id="inputPasswordConfirm" required>
-        <small id="msgErrorConfirmPassword">As senhas estão diferentes.</small>
+        <small class="msgErrorConfirmPassword">As senhas estão diferentes.</small>
       </label>
-      <label class="checkboxShowSenha" for="" id="checkboxShow">Mostar senha
+      <label class="checkboxShowPassword" for="" id="checkboxShow">Mostar senha
         <input type="checkbox" name="" id="showPassword">
       </label>
       <span class="alertIdentUser" id="alertUser">Usuario ja cadastrado</span>
@@ -68,7 +68,9 @@
   </div>
 
   <script src="../scripts/signup.js"></script>
+  <script src="../scripts/validates.js"></script>
   <script src="../scripts/spinner.js"></script>
+
 
 
 </body>
