@@ -1,3 +1,4 @@
+//References
 const inputEmailRef = document.querySelector('#inputEmail');
 const inputPasswordRef = document.querySelector('#inputPassword');
 const inputBtnAccessRef = document.querySelector('#btnAccess');
@@ -34,10 +35,8 @@ const validatePassword = () => {
 
 // Show password
 const showFieldCheckbox = () => {
-
   if (inputPasswordRef.value.length >= 2) {
     checkboxPasswordRef.classList.add('showPassword')
-
   }
   else {
     checkboxPasswordRef.classList.remove('showPassword')
@@ -45,7 +44,6 @@ const showFieldCheckbox = () => {
 }
 
 const showPassword = () => {
-
   if (inputShowPasswordRef.checked) {
     inputPasswordRef.type = inputPasswordRef.type == 'text' ? 'password' : 'text'
   }
@@ -67,7 +65,6 @@ const enableBtnAccess = () =>{
 
 //Login
 const loginUser = () =>{
-
   let usuarioLogin = {
     email: inputEmailRef.value,
     password: inputPasswordRef.value
@@ -95,7 +92,6 @@ const loginUser = () =>{
   }
   else {
     alertIdentUserRef.classList.add('alertIdentUserShow')
-
   }
   })
 }

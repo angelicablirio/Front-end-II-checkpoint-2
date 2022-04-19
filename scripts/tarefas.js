@@ -1,6 +1,6 @@
 const userNameRef = document.querySelector('#userName');
 const userPhotoRef = document.querySelector('.user-image');
-const btnRegisterTaskRef = document.querySelector('#registerTarefa');
+const btnRegisterTaskRef = document.querySelector('#registerTask');
 const inputNewTaskRef = document.querySelector('#newTask');
 const containerTasksRef = document.querySelector('.pending-tasks');
 const skeletonRef = document.querySelector('#skeleton');
@@ -12,14 +12,12 @@ const containerFinishedTasksRef = document.querySelector('.finished-tasks');
 const menuToggleRef = document.querySelector('#menu-toggle');
 const msgNoTasksRef = document.querySelector('.msg-notasks');
 
-// menu hamburguer
+//Menu hamburguer
 const menuToggle = (event) => {
-
   event.preventDefault()
   const showMenuRef = document.querySelector('#showMenu')
   showMenuRef.classList.toggle('activeMenu')
   menuToggleRef.classList.toggle('active')
-
 }
 
 //Format date
@@ -52,7 +50,6 @@ const showUserName = () =>{
 
 //Show tasks
 const showTasks = () =>{
-
   let requestHeaders = {
     headers: {
       "Content-Type": 'application/json',
@@ -74,7 +71,6 @@ const showTasks = () =>{
         }
 
         let tasks = data
-
         for(let task of tasks){
           let formatDate = new Date(task.createdAt).toLocaleDateString('pt-BR', {
             day:   '2-digit',
@@ -141,7 +137,7 @@ const postNewTask = () => {
             </div>
           </li>
             `
-            renderizaApp()
+            renderApp()
       });
     });
   } else {
@@ -164,13 +160,13 @@ const updateTasks = (id, completed) => { //Rever função*******
   fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
     .then(response => {
       if(response.ok){
-        renderizaApp()
+        renderApp()
     }
   })
 }
 
-//Renderiza app
-const renderizaApp = () =>{
+//Render app
+const renderApp = () =>{
   document.location.reload()
 }
 
@@ -189,33 +185,28 @@ const removeTask = (id) => {
     .then(response => {
       response.json()
     .then(data => {
-      renderizaApp()
+      renderApp()
     });
  });
 }
 
 //Logout app
 const logoutApp = () => {
-
   if(btnCloseAppRef.click){
     alertShowRef.classList.add('alertShow')
   }
 }
 
 const confirmLogout = () => {
-
   if(btnConfirmLogout.click){
     console.log('ok')
-
     localStorage.removeItem('token')
     window.location.assign('../index.html')
   }
 }
 
 const cancelLogout = () => {
-
   if(btnCancelLogout.click){
-
     alertShowRef.classList.remove('alertShow')
   }
 }

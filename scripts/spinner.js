@@ -1,18 +1,17 @@
+const body = document.querySelector('body');
+const form = document.querySelector('form');
+const spinnerContainer = document.createElement('div');
+const spinner = document.createElement('div');
+const link = document.querySelector('.join');
+
 const showSpinner = () => {
+    spinnerContainer.setAttribute('id', 'container-load');
+    spinner.setAttribute('id', 'load');
 
-    let body = document.querySelector('body')
-    let form = document.querySelector('form')
-    let spinnerContainer = document.createElement('div')
-    let spinner = document.createElement('div')
-    let link = document.querySelector('.join')
-
-    spinnerContainer.setAttribute('id', 'container-load')
-    spinner.setAttribute('id', 'load')
-
-    form.classList.add('hidden')
-    link.classList.add('hidden')
-    spinnerContainer.appendChild(spinner)
-    body.appendChild(spinnerContainer)
+    form.classList.add('hidden');
+    link.classList.add('hidden');
+    spinnerContainer.appendChild(spinner);
+    body.appendChild(spinnerContainer);
 
     return
 

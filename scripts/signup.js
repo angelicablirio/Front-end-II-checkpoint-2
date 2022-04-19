@@ -1,4 +1,4 @@
-//Referências
+//References
 const inputNameRef = document.querySelector('#inputName');
 const inputLastNameRef = document.querySelector('#inputLastName');
 const inputEmailRef = document.querySelector('#inputEmail');
@@ -10,10 +10,10 @@ const inputMsgErrorPasswordRef = document.querySelector('#msgErroPassword');
 const inputMsgErrorConfirmPasswordRef = document.querySelector('#msgErrorConfirmPassword')
 const inputMsgErrorLastNameRef = document.querySelector('#msgErrorLastName');
 const inputMsgErrorEmailRef = document.querySelector('#msgErrorEmail');
-const linkLoginRef = document.querySelector('a')
-const inputShowPasswordRef = document.querySelector('#showPassword')
-const checkboxPasswordRef = document.querySelector('#checkboxShow')
-const alertIdentUserRef = document.querySelector('#alertUser')
+const linkLoginRef = document.querySelector('a');
+const inputShowPasswordRef = document.querySelector('#showPassword');
+const checkboxPasswordRef = document.querySelector('#checkboxShow');
+const alertIdentUserRef = document.querySelector('#alertUser');
 
 //Validate name
 const validateName = () => {
@@ -39,24 +39,24 @@ const validateLastName = () => {
 
 //Validate email
 const validateEmail = () => {
-  if (inputEmailRef.checkValidity()) {
-    inputMsgErrorEmailRef.classList.remove('show');
-    return true;
-  } else {
-    inputMsgErrorEmailRef.classList.add('show');
-    return false;
-  }
+   if (inputEmailRef.checkValidity()) {
+     inputMsgErrorEmailRef.classList.remove('show');
+     return true;
+   } else {
+     inputMsgErrorEmailRef.classList.add('show');
+     return false;
+   }
 }
 
 //Validate password
 const validatePassword = () => {
-  if (inputPasswordRef.checkValidity()) {
-    inputMsgErrorPasswordRef.classList.remove('show');
-    return true;
-  } else {
-    inputMsgErrorPasswordRef.classList.add('show');
-    return false;
-  }
+   if (inputPasswordRef.checkValidity()) {
+     inputMsgErrorPasswordRef.classList.remove('show');
+     return true;
+   } else {
+     inputMsgErrorPasswordRef.classList.add('show');
+     return false;
+   }
 }
 
 //Confirm password
@@ -84,7 +84,7 @@ const showFieldCheckbox = () => {
 const showPassword = () => {
 
   if(inputShowPasswordRef.checked){
-    inputPasswordRef.type = inputPasswordRef.type == 'text' ? 'password' : 'text'
+    inputPasswordRef.type = inputPasswordRef.type == 'text' ? 'password' : 'text'    
     inputPasswordConfirmRef.type = inputPasswordConfirmRef.type == 'text' ? 'password' : 'text'
   }
   else {
@@ -128,19 +128,15 @@ const createLoginUser = () =>{
   fetch('https://ctd-todo-api.herokuapp.com/v1/users', requestConfig)
     .then(response =>{
       if(response.ok){
-        console.log(response)
-      response.json()
-
+        response.json()
       .then(requestConfig =>{
-        console.log(requestConfig)
         setTimeout(()=>{window.location.assign('../index.html')},500)
       });
       }
       else {
-
         alertIdentUserRef.classList.add('alertIdentUserShow')
       }
-    });
+  });
 }
 
 // Access Login page
