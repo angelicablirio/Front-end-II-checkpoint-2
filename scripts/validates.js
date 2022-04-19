@@ -75,13 +75,24 @@ const showFieldCheckbox = () => {
 const showPassword = () => {
 
   if(inputShowPasswordRef.checked){
-    inputPasswordRef.type = inputPasswordRef.type == 'text' ? 'password' : 'text'    
+    inputPasswordRef.type = inputPasswordRef.type == 'text' ? 'password' : 'text'
     inputPasswordConfirmRef.type = inputPasswordConfirmRef.type == 'text' ? 'password' : 'text'
   }
   else {
     inputPasswordRef.type = inputPasswordRef.type == 'password' ? 'text' : 'password'
     inputPasswordConfirmRef.type = inputPasswordConfirmRef.type == 'password' ? 'text' : 'password'
   }
+}
+
+const sweetAlertLogin = () => {
+
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Login feito com sucesso',
+    showConfirmButton: false,
+    timer: 1500
+  })
 }
 
 inputPasswordRef.addEventListener('keydown', showFieldCheckbox);

@@ -41,8 +41,10 @@ const loginUser = () =>{
       .then(data =>{
         localStorage.setItem('token', data.jwt)
         showSpinner()
-        setTimeout(()=>{window.location.assign('./pages/tarefas.html')},500)
+        sweetAlertLogin()
+        setTimeout(()=>{window.location.assign('./pages/tarefas.html')},2000)
     })
+
   }
   else {
     alertIdentUserRef.classList.add('alertIdentUserShow')
@@ -63,4 +65,3 @@ inputBtnAccessRef.addEventListener('click', e => {
   loginUser();
 });
 linkCreateAccountRef.addEventListener('click', acessCreateAccountPage);
-
