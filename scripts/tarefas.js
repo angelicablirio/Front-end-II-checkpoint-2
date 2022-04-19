@@ -16,13 +16,18 @@ const msgNoTasksRef = document.querySelector('.msg-notasks');
 const menuToggle = (event) => {
 
   event.preventDefault()
+<<<<<<< HEAD
   const showMenuRef = document.querySelector('#showMenu')
   showMenuRef.classList.toggle('activeMenu')
   menuToggleRef.classList.toggle('active')
+=======
+  const mostrarMenu = document.querySelector('#showMenu')
+  mostrarMenu.classList.toggle('active-menu')
+>>>>>>> 176dbfaf1491ebefef0f132aa172ed668c56f663
 
 }
 
-//Formata data
+//Format date
 let date = new Date()
 let formatDate =
   date.toLocaleDateString('pt-BR', {
@@ -31,7 +36,7 @@ let formatDate =
     year:  'numeric',
   });
 
-//Insere o nome do usuário na tela
+//Show user name
 const showUserName = () =>{
   let requestHeaders = {
     headers: {
@@ -50,8 +55,8 @@ const showUserName = () =>{
   });
 }
 
-//Mostra as tarefas
-const mostraTarefas = () =>{
+//Show tasks
+const showTasks = () =>{
 
   let requestHeaders = {
     headers: {
@@ -89,7 +94,7 @@ const mostraTarefas = () =>{
             <div class="description">
               <p class="name">${task.description}</p>
               <p class="timestamp">Criada em: ${formatDate}</p>
-              <img class="bin-img" onclick = "removerTarefa(${task.id})"  src="../assets/bin.png" alt="Remover tarefa">
+              <img class="bin-img" onclick = "removeTask(${task.id})"  src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
             `
@@ -100,7 +105,7 @@ const mostraTarefas = () =>{
             <div class="description">
               <p class="name">${task.description}</p>
               <p class="timestamp">Criada em: ${formatDate}</p>
-              <img class="bin-img" onclick = "removerTarefa(${task.id})" src="../assets/bin.png" alt="Remover tarefa">
+              <img class="bin-img" onclick = "removeTask(${task.id})" src="../assets/bin.png" alt="Remover tarefa">
             </div>
           </li>
             `
@@ -110,7 +115,7 @@ const mostraTarefas = () =>{
   });
 }
 
-//Posta as novas tarefas
+//Post new task
 const postNewTask = () => {
   let tasksRegister = {
     description: inputNewTaskRef.value,
@@ -149,7 +154,7 @@ const postNewTask = () => {
     }
 }
 
-//Atualiza status da tarefa
+//Update task status
 
 const updateTasks = (id, completed) => { //Rever função*******
   let requestConfig = {
@@ -169,32 +174,13 @@ const updateTasks = (id, completed) => { //Rever função*******
   })
 }
 
-//Desmarcar tarefa
-// const desmarcarTarefa = (id) => {
-//   let requestConfig = {
-//     method: 'PUT',
-//     body: JSON.stringify({ completed:false }),
-//     headers: {
-//       "Content-Type":'application/json',
-//       "Authorization": localStorage.getItem('token')
-//     }
-//   }
-
-//   fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
-//     .then(response => {
-//       if(response.ok){
-//         renderizaApp()
-//     }
-//   })
-// }
-
 //Renderiza app
 const renderizaApp = () =>{
   document.location.reload()
 }
 
-//Remove tarefa
-const removerTarefa = (id) => {
+//Remove task
+const removeTask = (id) => {
 
   let requestConfig = {
     method: 'DELETE',
@@ -213,7 +199,7 @@ const removerTarefa = (id) => {
  });
 }
 
-//Sai do App
+//Logout app
 const logoutApp = () => {
 
   if(btnCloseAppRef.click){
@@ -239,9 +225,9 @@ const cancelLogout = () => {
   }
 }
 
-//Invoca as funções
+//Functions
 showUserName();
-mostraTarefas();
+showTasks();
 menuToggleRef.addEventListener('click', menuToggle)
 btnRegisterTaskRef.addEventListener('click', e =>{
   e.preventDefault()

@@ -15,7 +15,7 @@ const inputShowPasswordRef = document.querySelector('#showPassword')
 const checkboxPasswordRef = document.querySelector('#checkboxShow')
 const alertIdentUserRef = document.querySelector('#alertUser')
 
-//Valida nome
+//Validate name
 const validateName = () => {
   if (inputNameRef.checkValidity()) {
     inputMsgErrorNameRef.classList.remove('show');
@@ -26,7 +26,7 @@ const validateName = () => {
   }
 }
 
-//Valida apelido
+//Validate last name
 const validateLastName = () => {
   if (inputLastNameRef.checkValidity()) {
     inputMsgErrorLastNameRef.classList.remove('show');
@@ -37,7 +37,7 @@ const validateLastName = () => {
   }
 }
 
-//Valida email
+//Validate email
 const validateEmail = () => {
   if (inputEmailRef.checkValidity()) {
     inputMsgErrorEmailRef.classList.remove('show');
@@ -48,7 +48,7 @@ const validateEmail = () => {
   }
 }
 
-//Valida senha
+//Validate password
 const validatePassword = () => {
   if (inputPasswordRef.checkValidity()) {
     inputMsgErrorPasswordRef.classList.remove('show');
@@ -59,7 +59,7 @@ const validatePassword = () => {
   }
 }
 
-//Confirma senha
+//Confirm password
 const confirmPassword = () => {
   if(inputPasswordRef.value !== inputPasswordConfirmRef.value) {
     inputMsgErrorConfirmPasswordRef.classList.add('show');
@@ -70,7 +70,7 @@ const confirmPassword = () => {
   }
 }
 
-// Habilita campo com o checkbox para visualizar a senha
+// Show password
 const showFieldCheckbox = () => {
 
   if (inputPasswordRef.value.length >= 2) {
@@ -81,7 +81,6 @@ const showFieldCheckbox = () => {
   }
 }
 
-// Checkbox para visualizar a senha
 const showPassword = () => {
 
   if(inputShowPasswordRef.checked){
@@ -94,7 +93,7 @@ const showPassword = () => {
   }
 }
 
-//Valida todos os campos do formulário
+//Validate form
 const validateFormCreateAccount = () => {
   return validateName() &&
   validateLastName() &&
@@ -103,12 +102,12 @@ const validateFormCreateAccount = () => {
   confirmPassword()
 }
 
-//Habilita o botão de criar conta
+//Enable btn create account
 const enableBtnCreateAccount = () => {
   inputBtnCreateAccountRef.disabled = !validateFormCreateAccount();
 }
 
-//Cria a conta do usuário
+//Create user
 const createLoginUser = () =>{
   let user = {
     firstName: inputNameRef.value,
@@ -144,12 +143,12 @@ const createLoginUser = () =>{
     });
 }
 
-//Acessar a página do login caso já tenha conta
+// Access Login page
 const accessLoginPage = () => {
   window.location.assign("../index.html")
 }
 
-//Chama as funções
+//Functions
 inputNameRef.addEventListener('keyup', enableBtnCreateAccount);
 inputLastNameRef.addEventListener('keyup', enableBtnCreateAccount);
 inputEmailRef.addEventListener('keyup', enableBtnCreateAccount);

@@ -9,7 +9,7 @@ const checkboxPasswordRef = document.querySelector('#checkboxShow');
 const alertIdentUserRef = document.querySelector('#alertUser');
 
 
-//Valida email
+//Validate email
 const validateEmail = () => {
   if (inputEmailRef.checkValidity()) {
     inputMsgErrorEmailRef.classList.remove('show')
@@ -21,7 +21,7 @@ const validateEmail = () => {
   }
 }
 
-//Valida senha
+//Validate password
 const validatePassword = () => {
   if (inputPasswordRef.checkValidity()) {
     inputMsgErrorPasswordRef.classList.remove('show')
@@ -32,7 +32,7 @@ const validatePassword = () => {
   }
 }
 
-// Habilita campo com o checkbox para visualizar a senha
+// Show password
 const showFieldCheckbox = () => {
 
   if (inputPasswordRef.value.length >= 2) {
@@ -44,7 +44,6 @@ const showFieldCheckbox = () => {
   }
 }
 
-// Checkbox para visualizar a senha
 const showPassword = () => {
 
   if (inputShowPasswordRef.checked) {
@@ -55,18 +54,18 @@ const showPassword = () => {
   }
 }
 
-//Valida todos os campos do formulário
+//Validate form
 const validateForm = () => {
   return validateEmail() &&
   validatePassword()
 }
 
-//Habilita o botão acessar
+//Enable btn access
 const enableBtnAccess = () =>{
   inputBtnAccessRef.disabled = !validateForm();
 }
 
-//Faz o login do usuário
+//Login
 const loginUser = () =>{
 
   let usuarioLogin = {
@@ -101,11 +100,12 @@ const loginUser = () =>{
   })
 }
 
-//Acessar a página do para criar conta caso não tenha
+// Access create account page
 const acessCreateAccountPage = () => {
   window.location.assign("./pages/signup.html");
 }
 
+//Functions
 inputEmailRef.addEventListener('keyup', enableBtnAccess);
 inputPasswordRef.addEventListener('keyup', enableBtnAccess);
 inputPasswordRef.addEventListener('keydown', showFieldCheckbox);
