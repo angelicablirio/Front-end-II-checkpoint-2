@@ -46,7 +46,8 @@ const createLoginUser = () =>{
         response.json()
       .then(requestConfig =>{
         showSpinner()
-        setTimeout(()=>{window.location.assign('../index.html')},500)
+        sweetAlertSingUp()
+        setTimeout(()=>{window.location.assign('../index.html')},2000)
       });
       }
       else {

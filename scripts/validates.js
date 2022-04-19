@@ -95,6 +95,19 @@ const sweetAlertLogin = () => {
   })
 }
 
+const sweetAlertSingUp = () => {
+
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Cadastro realizado com sucesso',
+    showConfirmButton: false,
+    timer: 1500
+  })
+}
+
+
+
 inputPasswordRef.addEventListener('keydown', showFieldCheckbox);
 inputShowPasswordRef.addEventListener('change', showPassword);
 inputPasswordRef.addEventListener('keyup', validatePassword);

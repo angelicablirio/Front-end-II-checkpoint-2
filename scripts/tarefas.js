@@ -24,13 +24,13 @@ const menuToggle = (event) => {
 let date = new Date()
 let formatDate =
   date.toLocaleDateString('pt-BR', {
-    day:   '2-digit',
+    day: '2-digit',
     month: '2-digit',
-    year:  'numeric',
+    year: 'numeric',
   });
 
 //Show user name
-const showUserName = () =>{
+const showUserName = () => {
   let requestHeaders = {
     headers: {
       "Content-Type": 'application/json',
@@ -39,17 +39,17 @@ const showUserName = () =>{
   }
 
   fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', requestHeaders)
-    .then(response =>{
+    .then(response => {
       response.json()
-      .then(data =>{
-        userNameRef.innerHTML = `${data.firstName} ${data.lastName}`;
-        userPhotoRef.src = '../assets/foto-login.png'
+        .then(data => {
+          userNameRef.innerHTML = `${data.firstName} ${data.lastName}`;
+          userPhotoRef.src = '../assets/foto-login.png'
+        });
     });
-  });
 }
 
 //Show tasks
-const showTasks = () =>{
+const showTasks = () => {
   let requestHeaders = {
     headers: {
       "Content-Type": 'application/json',
@@ -58,28 +58,27 @@ const showTasks = () =>{
   }
 
   fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', requestHeaders)
-    .then(response =>{
+    .then(response => {
       response.json()
-      .then(data =>{
-        if(data == '') {
-          msgNoTasksRef.classList.remove('display')
-          skeletonRef.classList.add('display')
-        }
-        else {
-          msgNoTasksRef.classList.add('display')
-          skeletonRef.classList.add('display')
-        }
+        .then(data => {
+          if (data == '') {
+            msgNoTasksRef.classList.remove('display')
+            skeletonRef.classList.add('display')
+          } else {
+            msgNoTasksRef.classList.add('display')
+            skeletonRef.classList.add('display')
+          }
 
-        let tasks = data
-        for(let task of tasks){
-          let formatDate = new Date(task.createdAt).toLocaleDateString('pt-BR', {
-            day:   '2-digit',
-            month: '2-digit',
-            year:  'numeric',
-          })
+          let tasks = data
+          for (let task of tasks) {
+            let formatDate = new Date(task.createdAt).toLocaleDateString('pt-BR', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+            })
 
-          if(!task.completed){
-            containerTasksRef.innerHTML += `
+            if (!task.completed) {
+              containerTasksRef.innerHTML += `
             <li class="task">
             <div class="not-done" onclick = "updateTasks(${task.id}, true)" ></div>
             <div class="description">
@@ -89,8 +88,8 @@ const showTasks = () =>{
             </div>
           </li>
             `
-          }else {
-            containerFinishedTasksRef.innerHTML += `
+            } else {
+              containerFinishedTasksRef.innerHTML += `
             <li class="task">
             <div class="not-done" onclick = "updateTasks(${task.id}, false)" id="alterarStatus"></div>
             <div class="description">
@@ -100,10 +99,10 @@ const showTasks = () =>{
             </div>
           </li>
             `
+            }
           }
-        }
+        });
     });
-  });
 }
 
 //Post new task
@@ -122,12 +121,12 @@ const postNewTask = () => {
     }
   }
 
-  if(tasksRegister.description !== ''){
+  if (tasksRegister.description !== '') {
     fetch('https://ctd-todo-api.herokuapp.com/v1/tasks', requestConfig)
       .then(response => {
         response.json()
-        .then(data =>{
-          containerTasksRef.innerHTML += `
+          .then(data => {
+            containerTasksRef.innerHTML += `
             <li class="task">
             <div class="not-done"></div>
             <div class="description">
@@ -138,11 +137,11 @@ const postNewTask = () => {
           </li>
             `
             renderApp()
+          });
       });
-    });
   } else {
-     alert('Por favor preencha o nome da tarefa!')
-    }
+    alert('Por favor preencha o nome da tarefa!')
+  }
 }
 
 //Update task status
@@ -150,23 +149,25 @@ const postNewTask = () => {
 const updateTasks = (id, completed) => { //Rever função*******
   let requestConfig = {
     method: 'PUT',
-    body: JSON.stringify({ completed: completed }),
+    body: JSON.stringify({
+      completed: completed
+    }),
     headers: {
-      "Content-Type":'application/json',
+      "Content-Type": 'application/json',
       "Authorization": localStorage.getItem('token')
     }
   }
 
   fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
     .then(response => {
-      if(response.ok){
+      if (response.ok) {
         renderApp()
-    }
-  })
+      }
+    })
 }
 
 //Render app
-const renderApp = () =>{
+const renderApp = () => {
   document.location.reload()
 }
 
@@ -176,29 +177,57 @@ const removeTask = (id) => {
   let requestConfig = {
     method: 'DELETE',
     headers: {
-      "Content-Type":'application/json',
+      "Content-Type": 'application/json',
       "Authorization": localStorage.getItem('token')
     }
   }
 
-  fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
-    .then(response => {
-      response.json()
-    .then(data => {
-      renderApp()
-    });
- });
+  Swal.fire({
+    title: 'Você tem certeza que deseja deletar a tarefa?',
+    text: "Não há como mudar esta opção!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, deletar!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`, requestConfig)
+        .then(response => {
+          response.json()
+            .then(data => {
+              if (response.ok) {
+                Swal.fire(
+                    'Deletado!',
+                    'Sua tarefa foi deletada.',
+                    'success'
+                  )
+                  .then((result) => {
+                    if (result.isConfirmed) {
+                      renderApp()
+                    }
+                  })
+              }
+            });
+        });
+
+
+    }
+  })
+
+
+
 }
 
 //Logout app
 const logoutApp = () => {
-  if(btnCloseAppRef.click){
+  if (btnCloseAppRef.click) {
     alertShowRef.classList.add('alertShow')
   }
 }
 
 const confirmLogout = () => {
-  if(btnConfirmLogout.click){
+  if (btnConfirmLogout.click) {
     console.log('ok')
     localStorage.removeItem('token')
     window.location.assign('../index.html')
@@ -206,7 +235,7 @@ const confirmLogout = () => {
 }
 
 const cancelLogout = () => {
-  if(btnCancelLogout.click){
+  if (btnCancelLogout.click) {
     alertShowRef.classList.remove('alertShow')
   }
 }
@@ -215,7 +244,7 @@ const cancelLogout = () => {
 showUserName();
 showTasks();
 menuToggleRef.addEventListener('click', menuToggle)
-btnRegisterTaskRef.addEventListener('click', e =>{
+btnRegisterTaskRef.addEventListener('click', e => {
   e.preventDefault()
   postNewTask()
 });
