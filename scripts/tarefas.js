@@ -16,14 +16,9 @@ const msgNoTasksRef = document.querySelector('.msg-notasks');
 const menuToggle = (event) => {
 
   event.preventDefault()
-<<<<<<< HEAD
   const showMenuRef = document.querySelector('#showMenu')
   showMenuRef.classList.toggle('activeMenu')
   menuToggleRef.classList.toggle('active')
-=======
-  const mostrarMenu = document.querySelector('#showMenu')
-  mostrarMenu.classList.toggle('active-menu')
->>>>>>> 176dbfaf1491ebefef0f132aa172ed668c56f663
 
 }
 
