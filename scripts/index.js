@@ -40,7 +40,8 @@ const loginUser = () =>{
       response.json()
       .then(data =>{
         localStorage.setItem('token', data.jwt)
-        setTimeout(()=>{window.location.assign('./pages/tarefas.html')},300)
+        showSpinner()
+        setTimeout(()=>{window.location.assign('./pages/tarefas.html')},500)
     })
   }
   else {
@@ -60,7 +61,6 @@ inputPasswordRef.addEventListener('keyup', enableBtnAccess);
 inputBtnAccessRef.addEventListener('click', e => {
   e.preventDefault();
   loginUser();
-  showSpinner();
 });
 linkCreateAccountRef.addEventListener('click', acessCreateAccountPage);
 

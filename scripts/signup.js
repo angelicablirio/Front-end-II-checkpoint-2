@@ -45,7 +45,8 @@ const createLoginUser = () =>{
       if(response.ok){
         response.json()
       .then(requestConfig =>{
-        setTimeout(()=>{window.location.assign('../index.html')},300)
+        showSpinner()
+        setTimeout(()=>{window.location.assign('../index.html')},500)
       });
       }
       else {
@@ -68,5 +69,4 @@ linkLoginRef.addEventListener('click', accessLoginPage)
 inputBtnCreateAccountRef.addEventListener('click', e => {
   e.preventDefault();
   createLoginUser();
-  showSpinner();
 });

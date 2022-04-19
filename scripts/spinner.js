@@ -15,4 +15,4 @@ const showSpinner = () => {
 
     return
 
-  }
+}
