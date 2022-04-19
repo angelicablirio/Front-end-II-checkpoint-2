@@ -219,6 +219,7 @@ const cancelLogout = () => {
   }
 }
 
+//Functions
 showUserName();
 showTasks();
 menuToggleRef.addEventListener('click', menuToggle)
