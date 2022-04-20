@@ -1,10 +1,10 @@
 const inputMsgErrorNameRef = document.querySelector('.msgErrorName');
 const inputMsgErrorLastNameRef = document.querySelector('.msgErrorLastName');
-const inputMsgErrorConfirmPasswordRef = document.querySelector('.msgErrorConfirmPassword')
+const inputMsgErrorConfirmPasswordRef = document.querySelector('.msgErrorConfirmPassword');
 const inputMsgErrorEmailRef = document.querySelector('.msgErrorEmail');
 const inputMsgErrorPasswordRef = document.querySelector('.msgErrorPassword');
-const inputShowPasswordRef = document.querySelector('#showPassword');
 const checkboxPasswordRef = document.querySelector('#checkboxShow');
+
 
 //Validate name
 const validateName = () => {
@@ -84,30 +84,4 @@ const showPassword = () => {
   }
 }
 
-const sweetAlertLogin = () => {
 
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'Login feito com sucesso',
-    showConfirmButton: false,
-    timer: 1500
-  })
-}
-
-const sweetAlertSingUp = () => {
-
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'Cadastro realizado com sucesso',
-    showConfirmButton: false,
-    timer: 1500
-  })
-}
-
-
-
-inputPasswordRef.addEventListener('keydown', showFieldCheckbox);
-inputShowPasswordRef.addEventListener('change', showPassword);
-inputPasswordRef.addEventListener('keyup', validatePassword);

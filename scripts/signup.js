@@ -7,6 +7,7 @@ const inputPasswordConfirmRef = document.querySelector('#inputPasswordConfirm');
 const inputBtnCreateAccountRef = document.querySelector('#btnCriarConta');
 const linkLoginRef = document.querySelector('a');
 const alertIdentUserRef = document.querySelector('#alertUser');
+const inputShowPasswordRef = document.querySelector('#showPassword');
 
 //Validate form
 const validateFormCreateAccount = () => {
@@ -44,7 +45,7 @@ const createLoginUser = () =>{
     .then(response =>{
       if(response.ok){
         response.json()
-      .then(requestConfig =>{
+      .then(data =>{
         showSpinner()
         sweetAlertSingUp()
         setTimeout(()=>{window.location.assign('../index.html')},2000)
@@ -56,6 +57,17 @@ const createLoginUser = () =>{
   });
 }
 
+//Msg success
+const sweetAlertSingUp = () => {
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Cadastro realizado com sucesso',
+    showConfirmButton: false,
+    timer: 1500
+  })
+}
+
 // Access Login page
 const accessLoginPage = () => {
   window.location.assign("../index.html")
@@ -65,8 +77,15 @@ const accessLoginPage = () => {
 inputNameRef.addEventListener('keyup', enableBtnCreateAccount);
 inputLastNameRef.addEventListener('keyup', enableBtnCreateAccount);
 inputEmailRef.addEventListener('keyup', enableBtnCreateAccount);
+inputPasswordRef.addEventListener('keyup', enableBtnCreateAccount);
 inputPasswordConfirmRef.addEventListener('keyup', enableBtnCreateAccount);
-linkLoginRef.addEventListener('click', accessLoginPage)
+linkLoginRef.addEventListener('click', accessLoginPage);
+inputPasswordRef.addEventListener('keydown', () =>{
+  showFieldCheckbox();
+});
+inputShowPasswordRef.addEventListener('change', () =>{
+  showPassword();
+});
 inputBtnCreateAccountRef.addEventListener('click', e => {
   e.preventDefault();
   createLoginUser();
